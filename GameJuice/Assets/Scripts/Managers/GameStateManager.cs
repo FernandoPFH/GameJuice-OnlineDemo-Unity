@@ -1,10 +1,13 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
 
 public class GameStateManager : Singleton<GameStateManager>
 {
     [SerializeField] private GameObject winScreen;
     [SerializeField] private GameObject loseScreen;
+
+    public static Action OnGameReset;
 
     private void Start()
     {
@@ -50,5 +53,9 @@ public class GameStateManager : Singleton<GameStateManager>
         => loseScreen.SetActive(true);
 
     public void ResetGame()
-        => SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    {
+        OnGameReset?.Invoke();
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 }
