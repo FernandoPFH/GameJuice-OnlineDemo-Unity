@@ -7,14 +7,14 @@ public class AddColor_EffectSO : EffectSO
     [SerializeField] private Color wallColor = Color.grey;
     [SerializeField] private Color barColor = Color.grey;
     [SerializeField] private Color ballColor = Color.grey;
-    [SerializeField] private Color cameraBackgroundColor = Color.darkGray;
+    [SerializeField] private Color backgroundColor = Color.darkGray;
 
 #if UNITY_EDITOR
     private Color lastBlockColor;
     private Color lastWallColor;
     private Color lastBarColor;
     private Color lastBallColor;
-    private Color lastCameraBackgroundColor;
+    private Color lastBackgroundColor;
 
     protected override void InitValues()
     {
@@ -22,7 +22,7 @@ public class AddColor_EffectSO : EffectSO
         InitValue<Color>(ref lastWallColor, wallColor);
         InitValue<Color>(ref lastBarColor, barColor);
         InitValue<Color>(ref lastBallColor, ballColor);
-        InitValue<Color>(ref lastCameraBackgroundColor, blockColor);
+        InitValue<Color>(ref lastBackgroundColor, backgroundColor);
     }
 
     protected override void CheckValuesChanged()
@@ -31,7 +31,7 @@ public class AddColor_EffectSO : EffectSO
         CheckValueChanged<Color>(ref lastWallColor, wallColor, OnWallColorChanged);
         CheckValueChanged<Color>(ref lastBarColor, barColor, OnBarColorChanged);
         CheckValueChanged<Color>(ref lastBallColor, ballColor, OnBallColorChanged);
-        CheckValueChanged<Color>(ref lastCameraBackgroundColor, blockColor, OnCameraBackgroundColorChanged);
+        CheckValueChanged<Color>(ref lastBackgroundColor, backgroundColor, OnBackgroundColorChanged);
     }
 #endif
 
@@ -67,12 +67,12 @@ public class AddColor_EffectSO : EffectSO
             SetBallColor();
     }
 
-    private void OnCameraBackgroundColorChanged(Color color)
+    private void OnBackgroundColorChanged(Color color)
     {
 
-        cameraBackgroundColor = color;
+        backgroundColor = color;
         if (isEnabled)
-            SetCameraBackgroundColor();
+            SetBackgroundColor();
     }
 
     private void SetBlockColor()
@@ -91,10 +91,10 @@ public class AddColor_EffectSO : EffectSO
        => Bar.Instance.GetComponent<SpriteRenderer>().color = barColor;
 
     private void SetBallColor()
-       => Ball.Instance.GetComponent<SpriteRenderer>().color = ballColor;
+       => BallRefs.Instance.Renderer.color = ballColor;
 
-    private void SetCameraBackgroundColor()
-       => Camera.main.backgroundColor = cameraBackgroundColor;
+    private void SetBackgroundColor()
+       => Background.Instance.SetColor(backgroundColor);
 
     private void ResetBlockColor()
     {
@@ -112,10 +112,10 @@ public class AddColor_EffectSO : EffectSO
        => Bar.Instance.GetComponent<SpriteRenderer>().color = AppearanceDefaults.Instance.SpriteColor;
 
     private void ResetBallColor()
-       => Ball.Instance.GetComponent<SpriteRenderer>().color = AppearanceDefaults.Instance.SpriteColor;
+       => BallRefs.Instance.Renderer.color = AppearanceDefaults.Instance.SpriteColor;
 
-    private void ResetCameraBackgroundColor()
-       => Camera.main.backgroundColor = AppearanceDefaults.Instance.CameraBackgroundColor;
+    private void ResetBackgroundColor()
+       => Background.Instance.SetColor(AppearanceDefaults.Instance.BackgroundColor);
 
     public override void OnEnabled()
     {
@@ -123,7 +123,7 @@ public class AddColor_EffectSO : EffectSO
         SetWallColor();
         SetBarColor();
         SetBallColor();
-        SetCameraBackgroundColor();
+        SetBackgroundColor();
     }
 
     public override void OnDisabled()
@@ -132,6 +132,6 @@ public class AddColor_EffectSO : EffectSO
         ResetWallColor();
         ResetBarColor();
         ResetBallColor();
-        ResetCameraBackgroundColor();
+        ResetBackgroundColor();
     }
 }

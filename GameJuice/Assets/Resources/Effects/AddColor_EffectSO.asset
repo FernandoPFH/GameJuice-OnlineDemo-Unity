@@ -17,4 +17,4 @@ MonoBehaviour:
   wallColor: {r: 0.37254903, g: 0.60784316, b: 0.54901963, a: 1}
   barColor: {r: 0.98039216, g: 0.78431374, b: 0.27450982, a: 1}
   ballColor: {r: 1, g: 0.49019608, b: 0.1764706, a: 1}
-  cameraBackgroundColor: {r: 0.13725491, g: 0.23529412, b: 0.29411766, a: 1}
+  backgroundColor: {r: 0.13725491, g: 0.23529412, b: 0.29411766, a: 1}

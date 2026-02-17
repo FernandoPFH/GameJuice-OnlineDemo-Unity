@@ -4,6 +4,6 @@ using UnityEngine;
 public class AppearanceDefaults : DefaultsSO<AppearanceDefaults>
 {
     public Color SpriteColor = Color.white;
-    public Color CameraBackgroundColor = Color.darkGray;
+    public Color BackgroundColor = Color.darkGray;
     public Sprite BlockSprite;
 }
