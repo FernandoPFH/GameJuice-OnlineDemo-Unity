@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9b59b36d19444f8a90f6782127b6c9b, type: 3}
+  m_Name: AddMultipleTiles_EffectSO
+  m_EditorClassIdentifier: Assembly-CSharp::AddMultipleTiles_EffectSO
+  isEnabled: 0
+  spriteChances:
+  - sprite: {fileID: -1303110653, guid: 8d60a4038ce1eca419b0d88b9fe42a73, type: 3}
+    chance: 0.1
+  - sprite: {fileID: 119315848, guid: 312feb7527e9cbd6791cdbdbf158d489, type: 3}
+    chance: 0.1
+  - sprite: {fileID: 1007266476, guid: f62d3c83b049501b58845e2ebbc44761, type: 3}
+    chance: 0.1
+  - sprite: {fileID: -1947563366, guid: 0b4b200377bda3da5bf035560b686f1d, type: 3}
+    chance: 0.1
+  - sprite: {fileID: -1063443366, guid: a0f0474f0939eef8fbf09327e04cf971, type: 3}
+    chance: 0.1
+  - sprite: {fileID: 1044568258, guid: 8a597c3435cfe48b29a52b20eb154ebe, type: 3}
+    chance: 0.1
+  - sprite: {fileID: -101302751, guid: fb3f1f49619229b5cb8826bcf8952c20, type: 3}
+    chance: 0.1
+  - sprite: {fileID: -2033532514, guid: 36e35b91ade75a3dab92f5c0f17014c1, type: 3}
+    chance: 0.1
+  - sprite: {fileID: -2106931424, guid: 2d467bca03c8c1450b96ff1afabf295b, type: 3}
+    chance: 0.1
+  - sprite: {fileID: -1482009909, guid: b388412a54de9d21782b7384da77a5a6, type: 3}
+    chance: 0.1
+  - sprite: {fileID: -1905730781, guid: d8f790c6c840761bdab3134499bcf6df, type: 3}
+    chance: 0.1
+  - sprite: {fileID: 1365958437, guid: ea63dbad11a0773518fb65e91dc96ed1, type: 3}
+    chance: 0.1

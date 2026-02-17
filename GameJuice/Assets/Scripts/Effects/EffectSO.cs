@@ -4,12 +4,9 @@ using System.Collections.Generic;
 
 public abstract class EffectSO : ScriptableObject
 {
-
     [SerializeField] protected bool isEnabled;
 
 #if UNITY_EDITOR
-    protected virtual List<(object, object, Action<object>)> valuesToCheck { get; set; }
-
     private bool lastIsEnabledStatus;
 #endif
 
@@ -37,30 +34,22 @@ public abstract class EffectSO : ScriptableObject
     }
 
 #if UNITY_EDITOR
-    protected virtual void InitValue(object lastValue, object currentValue)
-        => lastValue = currentValue;
 
-    protected virtual void CheckValue(object lastValue, object currentValue, Action<object> onValueChanged)
+    protected virtual void InitValue<T>(ref T lastValue, T currentValue)
+    => lastValue = currentValue;
+
+    protected virtual void InitValues() { }
+
+    protected virtual void CheckValueChanged<T>(ref T lastValue, T currentValue, Action<T> onValueChanged)
     {
-        if (lastValue == currentValue)
+        if (lastValue.Equals(currentValue))
             return;
 
         lastValue = currentValue;
-        onValueChanged(currentValue);
+        onValueChanged((T)currentValue);
     }
 
-    protected virtual void InitValues()
-    {
-        foreach ((object lastValue, object currentValue, Action<object> onValueChanged) in valuesToCheck)
-            InitValue(lastValue, currentValue);
-    }
-
-    protected virtual void CheckValuesChanged()
-    {
-        foreach ((object lastValue, object currentValue, Action<object> onValueChanged) in valuesToCheck)
-            CheckValue(lastValue, currentValue, onValueChanged);
-
-    }
+    protected virtual void CheckValuesChanged() { }
 #endif
 
     public virtual void OnEnabled() { }
