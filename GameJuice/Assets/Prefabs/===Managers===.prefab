@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EffectsHandler
   effects:
+  - {fileID: 11400000, guid: 37a399e45f4fedb0485e58e513f80c15, type: 2}
   - {fileID: 11400000, guid: 89045baf3c5016c42ba7cac5810d2335, type: 2}
   - {fileID: 11400000, guid: 423a3895cfc2550268e5ffcf01a2faa5, type: 2}
   - {fileID: 11400000, guid: 1984dd69e8f70e5d1b46ad6c645b75dd, type: 2}

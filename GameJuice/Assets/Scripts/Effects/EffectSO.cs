@@ -13,6 +13,8 @@ public abstract class EffectSO : ScriptableObject
     public virtual void OnStart()
     {
 #if UNITY_EDITOR
+        lastIsEnabledStatus = false;
+
         InitValues();
 #endif
     }
@@ -33,7 +35,14 @@ public abstract class EffectSO : ScriptableObject
 #endif
     }
 
+    public virtual void OnDestroy()
+    {
+        if (isEnabled)
+            OnDisabled();
+    }
+
 #if UNITY_EDITOR
+    public virtual void OnGizmosDraw() { }
 
     protected virtual void InitValue<T>(ref T lastValue, T currentValue)
     => lastValue = currentValue;

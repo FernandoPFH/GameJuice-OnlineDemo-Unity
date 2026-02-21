@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdb1243e648d1e3b48adb9dcfcfa6ad3, type: 3}
+  m_Name: AddBackgroundShapes_EffectSO
+  m_EditorClassIdentifier: Assembly-CSharp::AddBackgroundShapes_EffectSO
+  isEnabled: 1
+  shapes:
+  - {fileID: 2898350050112375902, guid: f5b77ecf01818a093981c3bc74fda7e8, type: 3}
+  - {fileID: 3600558617784021210, guid: 19091124f7d4458fcb2c9b116368dc40, type: 3}
+  shapesColor: {r: 0.41509432, g: 0.41509432, b: 0.41509432, a: 0.2784314}
+  minSpawnAreaDiameter: 1
+  maxSpawnAreaDiameter: 3
+  minSpawnScale: 0.05
+  maxSpawnScale: 0.2
+  numOfShapesToSpawn: 5

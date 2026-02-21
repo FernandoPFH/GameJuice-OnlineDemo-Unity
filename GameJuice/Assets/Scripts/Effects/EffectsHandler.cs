@@ -18,8 +18,20 @@ public class EffectsHandler : MonoBehaviour
             effect.OnUpdate();
     }
 
+    private void OnDestroy()
+    {
+        foreach (EffectSO effect in effects)
+            effect.OnDestroy();
+    }
+
 #if UNITY_EDITOR
     private void OnValidate()
         => effects = Resources.LoadAll<EffectSO>("Effects").ToList();
+
+    private void OnDrawGizmos()
+    {
+        foreach (EffectSO effect in effects)
+            effect.OnGizmosDraw();
+    }
 #endif
 }

@@ -18,20 +18,20 @@ public class AddColor_EffectSO : EffectSO
 
     protected override void InitValues()
     {
-        InitValue<Color>(ref lastBlockColor, blockColor);
-        InitValue<Color>(ref lastWallColor, wallColor);
-        InitValue<Color>(ref lastBarColor, barColor);
-        InitValue<Color>(ref lastBallColor, ballColor);
-        InitValue<Color>(ref lastBackgroundColor, backgroundColor);
+        InitValue(ref lastBlockColor, blockColor);
+        InitValue(ref lastWallColor, wallColor);
+        InitValue(ref lastBarColor, barColor);
+        InitValue(ref lastBallColor, ballColor);
+        InitValue(ref lastBackgroundColor, backgroundColor);
     }
 
     protected override void CheckValuesChanged()
     {
-        CheckValueChanged<Color>(ref lastBlockColor, blockColor, OnBlockColorChanged);
-        CheckValueChanged<Color>(ref lastWallColor, wallColor, OnWallColorChanged);
-        CheckValueChanged<Color>(ref lastBarColor, barColor, OnBarColorChanged);
-        CheckValueChanged<Color>(ref lastBallColor, ballColor, OnBallColorChanged);
-        CheckValueChanged<Color>(ref lastBackgroundColor, backgroundColor, OnBackgroundColorChanged);
+        CheckValueChanged(ref lastBlockColor, blockColor, OnBlockColorChanged);
+        CheckValueChanged(ref lastWallColor, wallColor, OnWallColorChanged);
+        CheckValueChanged(ref lastBarColor, barColor, OnBarColorChanged);
+        CheckValueChanged(ref lastBallColor, ballColor, OnBallColorChanged);
+        CheckValueChanged(ref lastBackgroundColor, backgroundColor, OnBackgroundColorChanged);
     }
 #endif
 
