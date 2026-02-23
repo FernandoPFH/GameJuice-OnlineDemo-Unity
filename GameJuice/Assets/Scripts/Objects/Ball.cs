@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -7,6 +8,8 @@ public class Ball : Singleton<Ball>
 {
     [SerializeField] private float blockHitVelocityMultiplier = 1.5f;
     [SerializeField] private float maxVelocity = 30f;
+
+    public static Action OnSpawn;
 
     private new Rigidbody2D rigidbody;
 
@@ -47,6 +50,13 @@ public class Ball : Singleton<Ball>
     {
         gameObject.SetActive(false);
         rigidbody.linearVelocity = Vector2.zero;
+    }
+
+    public void Spawn()
+    {
+        gameObject.SetActive(true);
+
+        OnSpawn?.Invoke();
     }
 
     private void OnBlockHit(Block block)

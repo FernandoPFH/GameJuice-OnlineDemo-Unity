@@ -29,9 +29,8 @@ public class BallSpawner : Singleton<BallSpawner>
 
     private void SpawnBall()
     {
-        GameObject ball = Ball.Instance.gameObject;
-        ball.SetActive(true);
-        ball.transform.SetPositionAndRotation(transform.position, Quaternion.identity);
+        Ball.Instance.transform.SetPositionAndRotation(transform.position, Quaternion.identity);
+        Ball.Instance.Spawn();
     }
 
     private void AddMovementToBall()
