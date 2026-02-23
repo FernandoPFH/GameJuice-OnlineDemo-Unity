@@ -20,24 +20,24 @@ public class BallSpawner : Singleton<BallSpawner>
 
     private void OnGameStateChange(GameState state)
     {
-        if (state is not GameState.GameLoop)
-            return;
+        if (state is GameState.BallAnimation)
+            SpawnBall();
 
-        SpawnBall();
+        if (state is GameState.GameLoop)
+            AddMovementToBall();
     }
 
-    public static void SpawnBall()
-        => Instance.spawnBall();
-
-    private void spawnBall()
+    private void SpawnBall()
     {
-        Vector2 randomVelocity = getRandomVelocity();
-
         GameObject ball = Ball.Instance.gameObject;
         ball.SetActive(true);
         ball.transform.SetPositionAndRotation(transform.position, Quaternion.identity);
+    }
 
-        ball.GetComponent<Rigidbody2D>().linearVelocity = randomVelocity;
+    private void AddMovementToBall()
+    {
+        Vector2 randomVelocity = getRandomVelocity();
+        Ball.Instance.GetComponent<Rigidbody2D>().linearVelocity = randomVelocity;
     }
 
     public static Vector2 GetRandomVelocity()

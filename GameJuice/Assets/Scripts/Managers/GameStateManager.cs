@@ -9,7 +9,7 @@ public class GameStateManager : Singleton<GameStateManager>
     public static Action OnGameReset;
     public static Action<GameState> OnGameStateChange;
 
-    public static GameState GameState { get; private set; } = GameState.GameSpaceAnimation;
+    public GameState GameState = GameState.GameSpaceAnimation;
 
     private Dictionary<GameState, List<Func<bool>>> waitPerGameState = new();
 
@@ -24,23 +24,28 @@ public class GameStateManager : Singleton<GameStateManager>
         switch (GameState)
         {
             case GameState.GameSpaceAnimation:
-                if (!waitPerGameState.TryGetValue(GameState, out List<Func<bool>> waits))
+                if (!waitPerGameState.TryGetValue(GameState, out List<Func<bool>> gsWaits))
                 {
                     AdvanceState();
                     break;
                 }
 
-                if (waits.Count == 0 || waits.All(x => x()))
+                if (gsWaits.Count == 0 || gsWaits.All(x => x()))
+                    AdvanceState();
+
+                break;
+            case GameState.BallAnimation:
+                if (!waitPerGameState.TryGetValue(GameState, out List<Func<bool>> bWaits))
+                {
+                    AdvanceState();
+                    break;
+                }
+
+                if (bWaits.Count == 0 || bWaits.All(x => x()))
                     AdvanceState();
 
                 break;
         }
-    }
-
-    private void OnDestroy()
-    {
-        Block.OnHit -= OnBlockHit;
-        LifeManager.OnLifeLost -= OnLifeLost;
     }
 
     private void OnBlockHit(GameObject block, int blocksLefted)
@@ -50,7 +55,7 @@ public class GameStateManager : Singleton<GameStateManager>
     }
 
     private void OnLifeLost(int lifesLefted)
-        => BallSpawner.SpawnBall();
+        => RevertState();
 
     private void AdvanceState()
         => SetGameState(++GameState);
@@ -98,5 +103,6 @@ public class GameStateManager : Singleton<GameStateManager>
 public enum GameState
 {
     GameSpaceAnimation,
+    BallAnimation,
     GameLoop
 }
