@@ -12,6 +12,7 @@ public class AddBallLightSource_EffectSO : EffectSO
 
     private void ResetBallLight()
         => BallRefs.Instance.SourceLight.enabled = false;
+
     public override void OnEnabled()
         => SetBallLight();
 

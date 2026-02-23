@@ -11,12 +11,6 @@ public class Wall : MonoBehaviour
     private void Awake()
         => Instances.Add(this);
 
-    private void Start()
-        => GameStateManager.OnGameReset += ResetAwake;
-
-    private void ResetAwake()
-        => Instances.Remove(this);
-
     public void Hit()
         => OnHit?.Invoke(gameObject);
 }

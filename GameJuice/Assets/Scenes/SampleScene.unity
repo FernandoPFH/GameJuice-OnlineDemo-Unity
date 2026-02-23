@@ -340,16 +340,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1121845672 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8681802655083835258, guid: 5ef8dca777ba423ab90d8e9a4d66df34, type: 3}
-  m_PrefabInstance: {fileID: 3483217077773708818}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1910277963 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 549811356604004739, guid: 5ef8dca777ba423ab90d8e9a4d66df34, type: 3}
-  m_PrefabInstance: {fileID: 3483217077773708818}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3483217077773708818
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -442,10 +432,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8728451293994449968, guid: 5ef8dca777ba423ab90d8e9a4d66df34, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -14.840088
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -520,14 +506,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ===Managers===
       objectReference: {fileID: 0}
-    - target: {fileID: 6920558763413419210, guid: 401281c7226360acc9b638779dd28ecf, type: 3}
-      propertyPath: winScreen
-      value: 
-      objectReference: {fileID: 1121845672}
-    - target: {fileID: 6920558763413419210, guid: 401281c7226360acc9b638779dd28ecf, type: 3}
-      propertyPath: loseScreen
-      value: 
-      objectReference: {fileID: 1910277963}
     - target: {fileID: 9021608723107658237, guid: 401281c7226360acc9b638779dd28ecf, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.89757

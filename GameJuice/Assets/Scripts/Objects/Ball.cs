@@ -14,8 +14,12 @@ public class Ball : Singleton<Ball>
     private int minOccurancesToConciderStuck = 5;
     private int minTimeToConciderStuck = 5;
 
-    private void Start()
-        => rigidbody = GetComponent<Rigidbody2D>();
+    protected override void Awake()
+    {
+        base.Awake();
+
+        rigidbody = GetComponent<Rigidbody2D>();
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -39,14 +43,20 @@ public class Ball : Singleton<Ball>
         FixBallIsStuck();
     }
 
+    public void Reset()
+    {
+        gameObject.SetActive(false);
+        rigidbody.linearVelocity = Vector2.zero;
+    }
+
     private void OnBlockHit(Block block)
         => block.Hit();
 
     private void OnDeathWallHit(DeathWall deathWall)
     {
-        deathWall.Hit();
+        Reset();
 
-        Destroy(gameObject);
+        deathWall.Hit();
     }
 
     private void OnBarHit(Bar bar)

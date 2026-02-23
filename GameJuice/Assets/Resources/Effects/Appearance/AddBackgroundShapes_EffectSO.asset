@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdb1243e648d1e3b48adb9dcfcfa6ad3, type: 3}
   m_Name: AddBackgroundShapes_EffectSO
   m_EditorClassIdentifier: Assembly-CSharp::AddBackgroundShapes_EffectSO
-  isEnabled: 1
+  isEnabled: 0
   shapes:
   - {fileID: 2898350050112375902, guid: f5b77ecf01818a093981c3bc74fda7e8, type: 3}
   - {fileID: 3600558617784021210, guid: 19091124f7d4458fcb2c9b116368dc40, type: 3}

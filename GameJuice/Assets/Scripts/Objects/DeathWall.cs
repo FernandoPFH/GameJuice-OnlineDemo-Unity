@@ -1,7 +1,7 @@
 using UnityEngine;
 using System;
 
-public class DeathWall : MonoBehaviour
+public class DeathWall : Singleton<DeathWall>
 {
     public static Action<GameObject> OnHit;
 

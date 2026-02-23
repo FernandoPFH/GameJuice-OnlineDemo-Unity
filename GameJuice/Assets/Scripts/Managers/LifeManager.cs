@@ -17,10 +17,6 @@ public class LifeManager : Singleton<LifeManager>
         LifeUI.Instance.UpdateText(initialLifes);
     }
 
-    private void OnDestroy()
-        => DeathWall.OnHit -= OnDeathWallHit;
-
-
     private void OnDeathWallHit(GameObject deathWall)
     {
         LifeUI.Instance.UpdateText(--lifes);

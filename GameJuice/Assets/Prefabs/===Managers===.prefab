@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EffectsHandler
   effects:
+  - {fileID: 11400000, guid: 13e016e5d9af56fd88d6721e4fec7db8, type: 2}
   - {fileID: 11400000, guid: 37a399e45f4fedb0485e58e513f80c15, type: 2}
   - {fileID: 11400000, guid: 89045baf3c5016c42ba7cac5810d2335, type: 2}
   - {fileID: 11400000, guid: 423a3895cfc2550268e5ffcf01a2faa5, type: 2}
@@ -93,8 +94,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcdf7863a1fe2402891ab419d07b4215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameStateManager
-  winScreen: {fileID: 0}
-  loseScreen: {fileID: 0}
 --- !u!1 &2836813475987326697
 GameObject:
   m_ObjectHideFlags: 0

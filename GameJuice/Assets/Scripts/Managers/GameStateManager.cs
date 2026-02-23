@@ -1,18 +1,40 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System;
+using System.Linq;
+using System.Collections.Generic;
 
 public class GameStateManager : Singleton<GameStateManager>
 {
-    [SerializeField] private GameObject winScreen;
-    [SerializeField] private GameObject loseScreen;
-
     public static Action OnGameReset;
+    public static Action<GameState> OnGameStateChange;
+
+    public static GameState GameState { get; private set; } = GameState.GameSpaceAnimation;
+
+    private Dictionary<GameState, List<Func<bool>>> waitPerGameState = new();
 
     private void Start()
     {
         Block.OnHit += OnBlockHit;
         LifeManager.OnLifeLost += OnLifeLost;
+    }
+
+    private void Update()
+    {
+        switch (GameState)
+        {
+            case GameState.GameSpaceAnimation:
+                if (!waitPerGameState.TryGetValue(GameState, out List<Func<bool>> waits))
+                {
+                    AdvanceState();
+                    break;
+                }
+
+                if (waits.Count == 0 || waits.All(x => x()))
+                    AdvanceState();
+
+                break;
+        }
     }
 
     private void OnDestroy()
@@ -24,38 +46,57 @@ public class GameStateManager : Singleton<GameStateManager>
     private void OnBlockHit(GameObject block, int blocksLefted)
     {
         if (blocksLefted == 0)
-            EndGame(true);
+            ResetGame();
     }
 
     private void OnLifeLost(int lifesLefted)
+        => BallSpawner.SpawnBall();
+
+    private void AdvanceState()
+        => SetGameState(++GameState);
+
+    private void RevertState()
+        => SetGameState(--GameState);
+
+    private void SetGameState(GameState state)
     {
-        if (lifesLefted == 0)
-        {
-            EndGame(false);
-            return;
-        }
-
-        BallSpawner.SpawnBall();
+        GameState = state;
+        OnGameStateChange?.Invoke(state);
     }
-
-    private void EndGame(bool hasWon)
-    {
-        if (hasWon)
-            WinGame();
-        else
-            LoseGame();
-    }
-
-    private void WinGame()
-        => winScreen.SetActive(true);
-
-    private void LoseGame()
-        => loseScreen.SetActive(true);
 
     public void ResetGame()
     {
+
+        Ball.Instance?.Reset();
+        Bar.Instance?.Reset();
+        if (Block.Instances.Count > 0)
+            foreach (Block block in Block.Instances)
+                block.Reset();
+
         OnGameReset?.Invoke();
 
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SetGameState(GameState.GameSpaceAnimation);
     }
+
+    public void RegisterWait(GameState gameState, Func<bool> predicate)
+    {
+        if (!waitPerGameState.TryGetValue(gameState, out List<Func<bool>> waits))
+            waits = waitPerGameState[gameState] = new();
+
+        waits.Add(predicate);
+    }
+
+    public void UnregisterWait(GameState gameState, Func<bool> predicate)
+    {
+        if (!waitPerGameState.TryGetValue(gameState, out List<Func<bool>> waits))
+            return;
+
+        waits.Remove(predicate);
+    }
+}
+
+public enum GameState
+{
+    GameSpaceAnimation,
+    GameLoop
 }
