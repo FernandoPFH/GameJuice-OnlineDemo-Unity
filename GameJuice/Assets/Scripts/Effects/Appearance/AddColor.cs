@@ -88,7 +88,7 @@ public class AddColor_EffectSO : EffectSO
     }
 
     private void SetBarColor()
-       => Bar.Instance.GetComponent<SpriteRenderer>().color = barColor;
+       => BarRefs.Instance.Renderer.color = barColor;
 
     private void SetBallColor()
        => BallRefs.Instance.Renderer.color = ballColor;
@@ -109,7 +109,7 @@ public class AddColor_EffectSO : EffectSO
     }
 
     private void ResetBarColor()
-       => Bar.Instance.GetComponent<SpriteRenderer>().color = AppearanceDefaults.Instance.SpriteColor;
+       => BarRefs.Instance.Renderer.color = AppearanceDefaults.Instance.SpriteColor;
 
     private void ResetBallColor()
        => BallRefs.Instance.Renderer.color = AppearanceDefaults.Instance.SpriteColor;
