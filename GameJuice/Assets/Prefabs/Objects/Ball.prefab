@@ -79,7 +79,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_MaskInteraction: 0
   m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -305,6 +305,7 @@ MonoBehaviour:
   Renderer: {fileID: 1355915267724984968}
   SourceLight: {fileID: 1971175705792885138}
   Rigidbody: {fileID: 5826852639580061517}
+  Trail: {fileID: 7866189320142834410}
 --- !u!1 &6198511007299344266
 GameObject:
   m_ObjectHideFlags: 0
