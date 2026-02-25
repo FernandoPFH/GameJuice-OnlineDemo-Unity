@@ -85,9 +85,10 @@ public class Ball : Singleton<Ball>
 
     private void FixBallIsStuck()
     {
-        Vector2 velocityNormalized = rigidbody.linearVelocity.normalized;
+        float angleX = Vector2.Angle(rigidbody.linearVelocity, Vector2.right);
+        float angleY = Vector2.Angle(rigidbody.linearVelocity, Vector2.up);
 
-        if (Mathf.Abs(velocityNormalized.x) >= 0.95f || Mathf.Abs(velocityNormalized.y) >= 0.95f)
+        if ((Mathf.Abs(angleX - 90f) <= 5f || Mathf.Abs(angleX - 90f) <= 5f) || (Mathf.Abs(angleX - 90f) <= 5f || Mathf.Abs(angleX - 90f) <= 5f))
             timesWhenBallMayBeStuck.Add(Time.time);
         else
             timesWhenBallMayBeStuck.Clear();
