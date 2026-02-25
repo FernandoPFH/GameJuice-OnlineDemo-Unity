@@ -48,7 +48,7 @@ public class GameStateManager : Singleton<GameStateManager>
         }
     }
 
-    private void OnBlockHit(GameObject block, int blocksLefted)
+    private void OnBlockHit(GameObject block, int blocksLefted, Vector3 ballVelocity)
     {
         if (blocksLefted == 0)
             ResetGame();

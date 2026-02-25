@@ -31,7 +31,7 @@ public class Ball : Singleton<Ball>
         switch (other.tag)
         {
             case "Block":
-                OnBlockHit(other.GetComponent<Block>());
+                OnBlockHit(other.GetComponent<Block>(), collision.relativeVelocity);
                 break;
             case "DeathWall":
                 OnDeathWallHit(other.GetComponent<DeathWall>());
@@ -59,8 +59,8 @@ public class Ball : Singleton<Ball>
         OnSpawn?.Invoke();
     }
 
-    private void OnBlockHit(Block block)
-        => block.Hit();
+    private void OnBlockHit(Block block, Vector3 ballVelocity)
+        => block.Hit(ballVelocity);
 
     private void OnDeathWallHit(DeathWall deathWall)
     {

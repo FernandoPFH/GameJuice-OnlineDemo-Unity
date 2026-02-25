@@ -33,7 +33,7 @@ public class TriggerHitStop : EffectSO
         Time.timeScale = scale;
     }
 
-    private void OnBlockHit(GameObject block, int count)
+    private void OnBlockHit(GameObject block, int count, Vector3 ballVelocity)
         => frameLastHit = Time.frameCount;
 
     public override void OnEnabled()

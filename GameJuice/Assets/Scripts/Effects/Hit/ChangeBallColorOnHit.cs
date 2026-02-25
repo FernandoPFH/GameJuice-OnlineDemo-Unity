@@ -55,7 +55,7 @@ public class ChangeBallColorOnHit : EffectSO
     private void CancelAnimation()
         => LeanTween.cancelAll(BallRefs.Instance.Renderer.gameObject);
 
-    private void OnBlockHit(GameObject block, int count)
+    private void OnBlockHit(GameObject block, int count, Vector3 ballVelocity)
         => StartAnimation();
 
     public override void OnEnabled()

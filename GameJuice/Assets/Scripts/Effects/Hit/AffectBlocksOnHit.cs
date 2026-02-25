@@ -40,7 +40,7 @@ public class AffectBlocksOnHit : EffectSO
             LeanTween.cancelAll(BlockRefs.Instances[block].Renderer.transform);
     }
 
-    private void OnBlockHit(GameObject block, int count)
+    private void OnBlockHit(GameObject block, int count, Vector3 ballVelocity)
         => StartAnimation(block);
 
     public override void OnEnabled()

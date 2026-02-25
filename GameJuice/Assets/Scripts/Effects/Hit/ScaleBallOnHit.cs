@@ -49,7 +49,7 @@ public class ScaleBallOnHit : EffectSO
         BallRefs.Instance.Renderer.transform.localScale = Vector3.one;
     }
 
-    private void OnBlockHit(GameObject block, int count)
+    private void OnBlockHit(GameObject block, int count, Vector3 ballVelocity)
         => StartAnimation();
 
     public override void OnEnabled()
