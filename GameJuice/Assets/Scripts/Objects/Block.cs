@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public class Block : MonoBehaviour
 {
     public static Action<GameObject, int, Vector3> OnHit;
-    public static int Count => Instances.Count(x => x.gameObject.activeInHierarchy);
+    public static int Count => Instances.Count(x => x.gameObject.GetComponent<BoxCollider2D>().enabled);
     public static int TotalCount => Instances.Count;
 
     public static HashSet<Block> Instances = new();
@@ -57,7 +57,7 @@ public class Block : MonoBehaviour
 
     public void Reset()
     {
-        BlockState = BlockState.Enabled;
+        SetBlockState(BlockState.Enabled);
         gameObject.GetComponent<BoxCollider2D>().enabled = true;
         gameObject.SetActive(true);
     }
