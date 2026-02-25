@@ -33,6 +33,9 @@ public class Ball : Singleton<Ball>
             case "Block":
                 OnBlockHit(other.GetComponent<Block>(), collision.relativeVelocity);
                 break;
+            case "Wall":
+                OnWallHit(other.GetComponent<Wall>());
+                break;
             case "DeathWall":
                 OnDeathWallHit(other.GetComponent<DeathWall>());
                 break;
@@ -62,6 +65,9 @@ public class Ball : Singleton<Ball>
     private void OnBlockHit(Block block, Vector3 ballVelocity)
         => block.Hit(ballVelocity);
 
+    private void OnWallHit(Wall wall)
+        => wall.Hit();
+
     private void OnDeathWallHit(DeathWall deathWall)
     {
         Reset();
@@ -73,6 +79,7 @@ public class Ball : Singleton<Ball>
     {
         if (rigidbody.linearVelocity.sqrMagnitude < maxVelocity * maxVelocity)
             rigidbody.linearVelocity *= blockHitVelocityMultiplier;
+
         bar.Hit();
     }
 
