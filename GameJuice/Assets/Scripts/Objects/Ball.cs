@@ -10,6 +10,7 @@ public class Ball : Singleton<Ball>
     [SerializeField] private float maxVelocity = 30f;
 
     public static Action OnSpawn;
+    public static Action<string> OnHit;
 
     private new Rigidbody2D rigidbody;
 
@@ -45,6 +46,8 @@ public class Ball : Singleton<Ball>
             default:
                 break;
         }
+
+        OnHit?.Invoke(other.tag);
 
         FixBallIsStuck();
     }
