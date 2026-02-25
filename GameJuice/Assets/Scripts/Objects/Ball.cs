@@ -73,6 +73,7 @@ public class Ball : Singleton<Ball>
     {
         if (rigidbody.linearVelocity.sqrMagnitude < maxVelocity * maxVelocity)
             rigidbody.linearVelocity *= blockHitVelocityMultiplier;
+        bar.Hit();
     }
 
     private void FixBallIsStuck()
