@@ -7,6 +7,7 @@ public class Block : MonoBehaviour
 {
     public static Action<GameObject, int, Vector3> OnHit;
     public static int Count => Instances.Count(x => x.gameObject.activeInHierarchy);
+    public static int TotalCount => Instances.Count;
 
     public static HashSet<Block> Instances = new();
 
