@@ -7,6 +7,15 @@ public class StretchBall : EffectSO
     [SerializeField] private float maxShort = 0.9f;
     [SerializeField] private float maxVelocityRef = 2f;
 
+    public void OnMaxStretchChanged(float stretch)
+        => maxStretch = stretch;
+
+    public void OnMaxShortChanged(float mShort)
+        => maxShort = mShort;
+
+    public void OnMaxVelocityRefChanged(float velocity)
+        => maxVelocityRef = velocity;
+
     public override void OnUpdate()
     {
         base.OnUpdate();
@@ -14,9 +23,9 @@ public class StretchBall : EffectSO
         if (!isEnabled)
             return;
 
-        float angle = -Vector3.SignedAngle(BallRefs.Instance.Rigidbody.linearVelocity.normalized, Vector3.right, Vector3.forward);
+        float angle = -Vector2.SignedAngle(Ball.Velocity.normalized, Vector2.right);
 
-        float ballVelocity = Mathf.Abs(BallRefs.Instance.Rigidbody.linearVelocity.magnitude);
+        float ballVelocity = Mathf.Abs(Ball.Velocity.magnitude);
 
         float stretch = Map(ballVelocity, 0f, maxVelocityRef, 1f, maxStretch);
         float shorten = Map(ballVelocity, 0f, maxVelocityRef, 1f, maxShort);

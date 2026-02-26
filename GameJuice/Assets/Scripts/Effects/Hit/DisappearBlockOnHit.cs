@@ -4,7 +4,7 @@ using System.Collections.Generic;
 [CreateAssetMenu(fileName = "DisappearBlockOnHit_EffectSO", menuName = "EffectSO/DisappearBlockOnHit")]
 public class DisappearBlockOnHit : EffectSO
 {
-    [SerializeField] private Effect effect;
+    [SerializeField] private DisappearBlockOnHitEffect effect;
     [SerializeField] private Vector3 positionOffset;
     [SerializeField] private float pushMultiplier = 1f;
     [SerializeField] private float animationTime = 0.5f;
@@ -13,6 +13,21 @@ public class DisappearBlockOnHit : EffectSO
     private bool hasAnimationStarted;
     private int numOfAnimationsToFinish;
     private Dictionary<Block, Vector3> velocityOfHitPerBlock = new();
+
+    public void OnEffectChanged(DisappearBlockOnHitEffect effect)
+        => this.effect = effect;
+
+    public void OnPositionOffsetChanged(Vector3 offset)
+        => positionOffset = offset;
+
+    public void OnPushMultiplierChanged(float mult)
+        => pushMultiplier = mult;
+
+    public void OnAnimationTimeChanged(float time)
+        => animationTime = time;
+
+    public void OnEasingModeChanged(LeanTweenType LTT)
+        => easingMode = LTT;
 
     private void UpdateBlockAlpha(Block block, float alpha)
     {
@@ -29,18 +44,18 @@ public class DisappearBlockOnHit : EffectSO
 
         switch (effect)
         {
-            case Effect.Scale:
+            case DisappearBlockOnHitEffect.Scale:
                 numOfAnimationsToFinish++;
                 renderer.transform.LeanScale(Vector3.zero, animationTime).setEase(easingMode).setOnComplete(() => { numOfAnimationsToFinish--; renderer.transform.localScale = Vector3.zero; });
                 break;
-            case Effect.Fall:
+            case DisappearBlockOnHitEffect.Fall:
                 numOfAnimationsToFinish += 2;
                 renderer.transform.LeanMoveLocal(positionOffset, animationTime).setEase(easingMode).setOnComplete(() => { numOfAnimationsToFinish--; renderer.transform.localPosition = Vector3.zero; });
                 LeanTween.value(renderer.gameObject, (float alpha) => UpdateBlockAlpha(block, alpha), 1f, 0f, animationTime).setEase(easingMode).setOnComplete(() => { numOfAnimationsToFinish--; UpdateBlockAlpha(block, 0f); });
                 break;
-            case Effect.Push:
+            case DisappearBlockOnHitEffect.Push:
                 numOfAnimationsToFinish += 2;
-                renderer.transform.LeanMoveLocal(-velocityOfHitPerBlock[block].normalized * pushMultiplier, animationTime).setEase(easingMode).setOnComplete(() => { numOfAnimationsToFinish--; renderer.transform.localPosition = Vector3.zero; });
+                renderer.transform.LeanMoveLocal(velocityOfHitPerBlock[block].normalized * pushMultiplier, animationTime).setEase(easingMode).setOnComplete(() => { numOfAnimationsToFinish--; renderer.transform.localPosition = Vector3.zero; });
                 LeanTween.value(renderer.gameObject, (float alpha) => UpdateBlockAlpha(block, alpha), 1f, 0f, animationTime).setEase(easingMode).setOnComplete(() => { numOfAnimationsToFinish--; UpdateBlockAlpha(block, 0f); });
                 break;
         }
@@ -101,10 +116,11 @@ public class DisappearBlockOnHit : EffectSO
         Block.UnregisterWait(BlockState.DisappearAnimation, HasDisappearBlockAnimationFinished);
     }
 
-    private enum Effect
-    {
-        Scale,
-        Fall,
-        Push
-    }
+}
+
+public enum DisappearBlockOnHitEffect
+{
+    Scale,
+    Fall,
+    Push
 }

@@ -7,13 +7,13 @@ public class LightBackgroundOnHit : EffectSO
     [SerializeField] private float animationTime = 0.2f;
     [SerializeField] private LeanTweenType easingMode = LeanTweenType.easeInOutExpo;
 
-    private void OnColorMultiplierChanged(float scale)
-        => colorMultiplier = scale;
+    public void OnColorMultiplierChanged(float mult)
+        => colorMultiplier = mult;
 
-    private void OnAnimationTimeChanged(float time)
+    public void OnAnimationTimeChanged(float time)
         => animationTime = time;
 
-    private void OnEasingModeChanged(LeanTweenType LTT)
+    public void OnEasingModeChanged(LeanTweenType LTT)
         => easingMode = LTT;
 
     private void UpdateBackgroundColor(Color color)
@@ -28,8 +28,8 @@ public class LightBackgroundOnHit : EffectSO
 
         Color baseColor = Background.Instance.GetColor();
 
-        seq.append(LeanTween.value(Background.Instance.gameObject, UpdateBackgroundColor, baseColor, baseColor * colorMultiplier, animationTime / 2f));
-        seq.append(LeanTween.value(Background.Instance.gameObject, UpdateBackgroundColor, baseColor * colorMultiplier, baseColor, animationTime / 2f).setOnComplete(() => { UpdateBackgroundColor(baseColor); }));
+        seq.append(LeanTween.value(Background.Instance.gameObject, UpdateBackgroundColor, baseColor, baseColor * colorMultiplier, animationTime / 2f).setEase(easingMode));
+        seq.append(LeanTween.value(Background.Instance.gameObject, UpdateBackgroundColor, baseColor * colorMultiplier, baseColor, animationTime / 2f).setEase(easingMode).setOnComplete(() => { UpdateBackgroundColor(baseColor); }));
     }
 
     private void CancelAnimation()

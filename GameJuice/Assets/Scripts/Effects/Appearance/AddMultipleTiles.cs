@@ -8,16 +8,7 @@ using Random = UnityEngine.Random;
 [CreateAssetMenu(fileName = "AddMultipleTiles_EffectSO", menuName = "EffectSO/AddMultipleTiles")]
 public class AddMultipleTiles_EffectSO : EffectSO
 {
-    [SerializeField]
-    private List<SpriteChance> spriteChances;
-
-    [Serializable]
-    protected struct SpriteChance
-    {
-        public Sprite sprite;
-        [Range(0, 1)]
-        public float chance;
-    }
+    [SerializeField] private List<SpriteChance> spriteChances;
 
 #if UNITY_EDITOR
     private List<SpriteChance> lastSpriteChances;
@@ -41,7 +32,7 @@ public class AddMultipleTiles_EffectSO : EffectSO
         => CheckValueChanged(ref lastSpriteChances, spriteChances, OnTilesChanges);
 #endif
 
-    private void OnTilesChanges(List<SpriteChance> spriteChances)
+    public void OnTilesChanges(List<SpriteChance> spriteChances)
     {
         this.spriteChances = spriteChances;
         if (isEnabled)
@@ -81,4 +72,12 @@ public class AddMultipleTiles_EffectSO : EffectSO
 
     public override void OnDisabled()
         => ResetRandomTiles();
+}
+
+[Serializable]
+public struct SpriteChance
+{
+    public Sprite sprite;
+    [Range(0, 1)]
+    public float chance;
 }

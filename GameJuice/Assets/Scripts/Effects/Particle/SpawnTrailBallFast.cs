@@ -7,6 +7,9 @@ public class SpawnTrailBallFast : EffectSO
 {
     [SerializeField] private float ballVelocityThreshold = 10f;
 
+    public void OnBallVelocityThresholdChanged(float threshould)
+        => ballVelocityThreshold = threshould;
+
     public override void OnUpdate()
     {
         base.OnUpdate();
@@ -14,16 +17,13 @@ public class SpawnTrailBallFast : EffectSO
         if (!isEnabled)
             return;
 
-        if (BallRefs.Instance.Rigidbody.linearVelocity.magnitude < ballVelocityThreshold)
+        if (Ball.Velocity.sqrMagnitude < ballVelocityThreshold * ballVelocityThreshold)
         {
             BallRefs.Instance.FireTrail.SetActive(false);
             return;
         }
 
-        Vector2 linearVelocity = BallRefs.Instance.Rigidbody.linearVelocity;
-        linearVelocity.x *= -1f;
-
-        float angle = Vector2.SignedAngle(linearVelocity, -Vector3.up);
+        float angle = -Vector2.SignedAngle(Ball.Velocity, -Vector3.up);
 
         Vector3 lerpAngle = Vector3.forward * Mathf.LerpAngle(BallRefs.Instance.FireTrail.transform.rotation.eulerAngles.z, angle, 0.5f);
 

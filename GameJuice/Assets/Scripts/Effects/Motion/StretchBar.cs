@@ -7,6 +7,15 @@ public class StretchBar : EffectSO
     [SerializeField] private float maxShort = 0.9f;
     [SerializeField] private float maxVelocityRef = 2f;
 
+    public void OnMaxStretchChanged(float stretch)
+        => maxStretch = stretch;
+
+    public void OnMaxShortChanged(float mShort)
+        => maxShort = mShort;
+
+    public void OnMaxVelocityRefChanged(float velocity)
+        => maxVelocityRef = velocity;
+
     public override void OnUpdate()
     {
         base.OnUpdate();

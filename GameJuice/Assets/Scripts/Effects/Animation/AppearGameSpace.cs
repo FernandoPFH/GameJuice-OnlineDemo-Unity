@@ -73,77 +73,77 @@ public class AppearGameSpace : EffectSO
     }
 #endif
 
-    private void OnTimeToAppearChanged(float time)
+    public void OnTimeToAppearChanged(float time)
     {
         timeToAppear = time;
         if (isEnabled)
             GameStateManager.Instance.ResetGame();
     }
 
-    private void OnEasingModeChanged(LeanTweenType type)
+    public void OnEasingModeChanged(LeanTweenType type)
     {
         easingMode = type;
         if (isEnabled)
             GameStateManager.Instance.ResetGame();
     }
 
-    private void OnAffectPositionChanged(bool affect)
+    public void OnAffectPositionChanged(bool affect)
     {
         affectPosition = affect;
         if (isEnabled)
             GameStateManager.Instance.ResetGame();
     }
 
-    private void OnPositionOffsetChanged(Vector3 pos)
+    public void OnPositionOffsetChanged(Vector3 pos)
     {
         positionOffset = pos;
         if (isEnabled)
             GameStateManager.Instance.ResetGame();
     }
 
-    private void OnAffectRotationChanged(bool affect)
+    public void OnAffectRotationChanged(bool affect)
     {
         affectRotation = affect;
         if (isEnabled)
             GameStateManager.Instance.ResetGame();
     }
 
-    private void OnRotationOffsetChanged(Vector3 rot)
+    public void OnRotationOffsetChanged(Vector3 rot)
     {
         rotationOffset = rot;
         if (isEnabled)
             GameStateManager.Instance.ResetGame();
     }
 
-    private void OnAffectScaleChanged(bool affect)
+    public void OnAffectScaleChanged(bool affect)
     {
         affectScale = affect;
         if (isEnabled)
             GameStateManager.Instance.ResetGame();
     }
 
-    private void OnScaleOffsetChanged(Vector3 scale)
+    public void OnScaleOffsetChanged(Vector3 scale)
     {
         scaleMultiplier = scale;
         if (isEnabled)
             GameStateManager.Instance.ResetGame();
     }
 
-    private void OnShouldHaveDelayChanged(bool should)
+    public void OnShouldHaveDelayChanged(bool should)
     {
         shouldHaveDelay = should;
         if (isEnabled)
             GameStateManager.Instance.ResetGame();
     }
 
-    private void OnMinDelayChanged(float delay)
+    public void OnMinDelayChanged(float delay)
     {
         minDelay = delay;
         if (isEnabled)
             GameStateManager.Instance.ResetGame();
     }
 
-    private void OnMaxDelayChanged(float delay)
+    public void OnMaxDelayChanged(float delay)
     {
         maxDelay = delay;
         if (isEnabled)

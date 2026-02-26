@@ -18,6 +18,12 @@ public class Ball : Singleton<Ball>
     private int minOccurancesToConciderStuck = 5;
     private int minTimeToConciderStuck = 5;
 
+    public static Vector2 Velocity => Instance.velocity;
+    public static void SetVelocity(Vector2 velocity)
+        => Instance.velocity = velocity;
+
+    private Vector2 velocity = Vector2.zero;
+
     protected override void Awake()
     {
         base.Awake();
@@ -25,14 +31,22 @@ public class Ball : Singleton<Ball>
         rigidbody = GetComponent<Rigidbody2D>();
     }
 
+    private void Update()
+        => transform.position += (Vector3)velocity * Time.deltaTime;
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         GameObject other = collision.gameObject;
 
+        ContactPoint2D contactPoint = collision.GetContact(0);
+
+        Vector2 lastVelocity = velocity;
+        velocity = Vector2.Reflect(velocity, contactPoint.normal);
+
         switch (other.tag)
         {
             case "Block":
-                OnBlockHit(other.GetComponent<Block>(), collision.relativeVelocity);
+                OnBlockHit(other.GetComponent<Block>(), lastVelocity);
                 break;
             case "Wall":
                 OnWallHit(other.GetComponent<Wall>());
@@ -46,8 +60,6 @@ public class Ball : Singleton<Ball>
             default:
                 break;
         }
-
-        ContactPoint2D contactPoint = collision.GetContact(0);
 
         OnHit?.Invoke(other.tag, contactPoint.point, contactPoint.normal);
 
@@ -82,8 +94,8 @@ public class Ball : Singleton<Ball>
 
     private void OnBarHit(Bar bar)
     {
-        if (rigidbody.linearVelocity.sqrMagnitude < maxVelocity * maxVelocity)
-            rigidbody.linearVelocity *= blockHitVelocityMultiplier;
+        if (velocity.sqrMagnitude < maxVelocity * maxVelocity)
+            velocity *= blockHitVelocityMultiplier;
 
         bar.Hit();
     }

@@ -10,6 +10,9 @@ public class SpawnDustOnHit : EffectSO
 
     private List<ParticleSystem> createdVFXs = new();
 
+    public void OnScaleMultiplierChanged(float mult)
+        => scaleMultiplier = mult;
+
 #if UNITY_EDITOR
     protected override void InitValues()
         => createdVFXs.Clear();

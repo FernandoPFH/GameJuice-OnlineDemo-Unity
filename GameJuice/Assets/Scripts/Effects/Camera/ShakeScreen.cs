@@ -9,6 +9,18 @@ public class ShakeScreen : EffectSO
     [SerializeField] private float animationTime = 0.5f;
     [SerializeField] private LeanTweenType easingMode = LeanTweenType.easeInOutExpo;
 
+    public void OnPositionOffsetChanged(Vector3 pos)
+        => positionOffset = pos;
+
+    public void OnBlockMultiplierChanged(float mult)
+        => blockMultiplier = mult;
+
+    public void OnAnimationTimeChanged(float time)
+        => animationTime = time;
+
+    public void OnEasingModeChanged(LeanTweenType LTT)
+        => easingMode = LTT;
+
     private void StartAnimation(Vector3 pos)
     {
         LTSeq seq = LeanTween.sequence();

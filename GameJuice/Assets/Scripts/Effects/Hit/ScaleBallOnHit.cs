@@ -7,26 +7,6 @@ public class ScaleBallOnHit : EffectSO
     [SerializeField] private float animationTime = 0.2f;
     [SerializeField] private LeanTweenType easingMode = LeanTweenType.easeInOutExpo;
 
-#if UNITY_EDITOR
-    private float lastScaleMultiplier;
-    private float lastAnimationTime;
-    private LeanTweenType lastEasingMode;
-
-    protected override void InitValues()
-    {
-        InitValue(ref lastScaleMultiplier, scaleMultiplier);
-        InitValue(ref lastAnimationTime, animationTime);
-        InitValue(ref lastEasingMode, easingMode);
-    }
-
-    protected override void CheckValuesChanged()
-    {
-        CheckValueChanged(ref lastScaleMultiplier, scaleMultiplier, OnScaleMultiplierChanged);
-        CheckValueChanged(ref lastAnimationTime, animationTime, OnAnimationTimeChanged);
-        CheckValueChanged(ref lastEasingMode, easingMode, OnEasingModeChanged);
-    }
-#endif
-
     private void OnScaleMultiplierChanged(float scale)
         => scaleMultiplier = scale;
 
@@ -39,8 +19,8 @@ public class ScaleBallOnHit : EffectSO
     private void StartAnimation()
     {
         LTSeq seq = LeanTween.sequence();
-        seq.append(BallRefs.Instance.Renderer.transform.LeanScale(Vector3.one * scaleMultiplier, animationTime / 2f));
-        seq.append(BallRefs.Instance.Renderer.transform.LeanScale(Vector3.one, animationTime / 2f));
+        seq.append(BallRefs.Instance.Renderer.transform.LeanScale(Vector3.one * scaleMultiplier, animationTime / 2f).setEase(easingMode));
+        seq.append(BallRefs.Instance.Renderer.transform.LeanScale(Vector3.one, animationTime / 2f).setEase(easingMode));
     }
 
     private void CancelAnimation()

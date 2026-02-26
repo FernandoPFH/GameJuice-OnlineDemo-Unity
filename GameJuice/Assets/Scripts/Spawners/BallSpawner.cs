@@ -35,8 +35,7 @@ public class BallSpawner : Singleton<BallSpawner>
 
     private void AddMovementToBall()
     {
-        Vector2 randomVelocity = getRandomVelocity();
-        Ball.Instance.GetComponent<Rigidbody2D>().linearVelocity = randomVelocity;
+        Ball.SetVelocity(getRandomVelocity());
     }
 
     public static Vector2 GetRandomVelocity()

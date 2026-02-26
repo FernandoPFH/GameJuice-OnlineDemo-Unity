@@ -7,6 +7,12 @@ public class SoundOnBlockHit : EffectSO
     [SerializeField] private float minPitch = 1f;
     [SerializeField] private float maxPitch = 3f;
 
+    public void OnMinPitchChanged(float pitch)
+        => minPitch = pitch;
+
+    public void OnMaxPitchChanged(float pitch)
+        => maxPitch = pitch;
+
     private void OnBlockHit(GameObject block, int count, Vector3 ballVelocity)
     {
         BallRefs.Instance.Audio.clip = audio;

@@ -80,42 +80,42 @@ public class AddBackgroundShapes_EffectSO : EffectSO
     }
 #endif
 
-    private void OnShapesColorChanged(Color color)
+    public void OnShapesColorChanged(Color color)
     {
         this.shapesColor = color;
         if (isEnabled)
             SpawnShapes();
     }
 
-    private void OnMinSpawnAreaDiameterChanged(float diameter)
+    public void OnMinSpawnAreaDiameterChanged(float diameter)
     {
         minSpawnAreaDiameter = diameter;
         if (isEnabled)
             SpawnShapes();
     }
 
-    private void OnMaxSpawnAreaDiameterChanged(float diameter)
+    public void OnMaxSpawnAreaDiameterChanged(float diameter)
     {
         maxSpawnAreaDiameter = diameter;
         if (isEnabled)
             SpawnShapes();
     }
 
-    private void OnMinSpawnScaleChanged(float scale)
+    public void OnMinSpawnScaleChanged(float scale)
     {
         minSpawnScale = scale;
         if (isEnabled)
             SpawnShapes();
     }
 
-    private void OnMaxSpawnScaleChanged(float scale)
+    public void OnMaxSpawnScaleChanged(float scale)
     {
         maxSpawnScale = scale;
         if (isEnabled)
             SpawnShapes();
     }
 
-    private void OnNumOfShapesToSpawnChanged(int numOfShapes)
+    public void OnNumOfShapesToSpawnChanged(int numOfShapes)
     {
         numOfShapesToSpawn = numOfShapes;
         if (isEnabled)

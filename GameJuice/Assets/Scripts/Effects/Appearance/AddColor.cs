@@ -35,7 +35,7 @@ public class AddColor_EffectSO : EffectSO
     }
 #endif
 
-    private void OnBlockColorChanged(Color color)
+    public void OnBlockColorChanged(Color color)
     {
 
         blockColor = color;
@@ -43,7 +43,7 @@ public class AddColor_EffectSO : EffectSO
             SetBlockColor();
     }
 
-    private void OnWallColorChanged(Color color)
+    public void OnWallColorChanged(Color color)
     {
 
         wallColor = color;
@@ -51,7 +51,7 @@ public class AddColor_EffectSO : EffectSO
             SetWallColor();
     }
 
-    private void OnBarColorChanged(Color color)
+    public void OnBarColorChanged(Color color)
     {
 
         barColor = color;
@@ -59,7 +59,7 @@ public class AddColor_EffectSO : EffectSO
             SetBarColor();
     }
 
-    private void OnBallColorChanged(Color color)
+    public void OnBallColorChanged(Color color)
     {
 
         ballColor = color;
@@ -67,7 +67,7 @@ public class AddColor_EffectSO : EffectSO
             SetBallColor();
     }
 
-    private void OnBackgroundColorChanged(Color color)
+    public void OnBackgroundColorChanged(Color color)
     {
 
         backgroundColor = color;

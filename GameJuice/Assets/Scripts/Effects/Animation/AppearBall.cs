@@ -53,42 +53,42 @@ public class AppearBall : EffectSO
     }
 #endif
 
-    private void OnTimeToAppearChanged(float time)
+    public void OnTimeToAppearChanged(float time)
     {
         timeToAppear = time;
         if (isEnabled)
             GameStateManager.Instance.ResetGame();
     }
 
-    private void OnEasingModeChanged(LeanTweenType type)
+    public void OnEasingModeChanged(LeanTweenType type)
     {
         easingMode = type;
         if (isEnabled)
             GameStateManager.Instance.ResetGame();
     }
 
-    private void OnScaleOffsetChanged(Vector3 scale)
+    public void OnScaleOffsetChanged(Vector3 scale)
     {
         scaleMultiplier = scale;
         if (isEnabled)
             GameStateManager.Instance.ResetGame();
     }
 
-    private void OnShouldHaveDelayChanged(bool should)
+    public void OnShouldHaveDelayChanged(bool should)
     {
         shouldHaveDelay = should;
         if (isEnabled)
             GameStateManager.Instance.ResetGame();
     }
 
-    private void OnMinDelayChanged(float delay)
+    public void OnMinDelayChanged(float delay)
     {
         minDelay = delay;
         if (isEnabled)
             GameStateManager.Instance.ResetGame();
     }
 
-    private void OnMaxDelayChanged(float delay)
+    public void OnMaxDelayChanged(float delay)
     {
         maxDelay = delay;
         if (isEnabled)

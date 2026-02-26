@@ -7,33 +7,13 @@ public class ChangeBallColorOnHit : EffectSO
     [SerializeField] private float animationTime = 0.2f;
     [SerializeField] private LeanTweenType easingMode = LeanTweenType.easeInOutExpo;
 
-#if UNITY_EDITOR
-    private Color lastEndColor;
-    private float lastAnimationTime;
-    private LeanTweenType lastEasingMode;
-
-    protected override void InitValues()
-    {
-        InitValue(ref lastEndColor, endColor);
-        InitValue(ref lastAnimationTime, animationTime);
-        InitValue(ref lastEasingMode, easingMode);
-    }
-
-    protected override void CheckValuesChanged()
-    {
-        CheckValueChanged(ref lastEndColor, endColor, OnEndColorChanged);
-        CheckValueChanged(ref lastAnimationTime, animationTime, OnAnimationTimeChanged);
-        CheckValueChanged(ref lastEasingMode, easingMode, OnEasingModeChanged);
-    }
-#endif
-
-    private void OnEndColorChanged(Color color)
+    public void OnEndColorChanged(Color color)
         => endColor = color;
 
-    private void OnAnimationTimeChanged(float time)
+    public void OnAnimationTimeChanged(float time)
         => animationTime = time;
 
-    private void OnEasingModeChanged(LeanTweenType LTT)
+    public void OnEasingModeChanged(LeanTweenType LTT)
         => easingMode = LTT;
 
     private void UpdateBallColor(Color color)
@@ -48,8 +28,8 @@ public class ChangeBallColorOnHit : EffectSO
 
         Color initialColor = BallRefs.Instance.Renderer.color;
 
-        seq.append(LeanTween.value(BallRefs.Instance.Renderer.gameObject, UpdateBallColor, initialColor, endColor, animationTime / 2f));
-        seq.append(LeanTween.value(BallRefs.Instance.Renderer.gameObject, UpdateBallColor, endColor, initialColor, animationTime / 2f).setOnComplete(() => BallRefs.Instance.Renderer.color = initialColor));
+        seq.append(LeanTween.value(BallRefs.Instance.Renderer.gameObject, UpdateBallColor, initialColor, endColor, animationTime / 2f).setEase(easingMode));
+        seq.append(LeanTween.value(BallRefs.Instance.Renderer.gameObject, UpdateBallColor, endColor, initialColor, animationTime / 2f).setEase(easingMode).setOnComplete(() => BallRefs.Instance.Renderer.color = initialColor));
     }
 
     private void CancelAnimation()
