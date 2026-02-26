@@ -3,8 +3,8 @@ using System;
 
 public class DeathWall : Singleton<DeathWall>
 {
-    public static Action<GameObject> OnHit;
+    public static Action<GameObject, Vector3> OnHit;
 
-    public void Hit()
-        => OnHit?.Invoke(gameObject);
+    public void Hit(Vector3 ballPosition)
+        => OnHit?.Invoke(gameObject, ballPosition);
 }

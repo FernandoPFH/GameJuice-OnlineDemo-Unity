@@ -17,7 +17,7 @@ public class LifeManager : Singleton<LifeManager>
         LifeUI.Instance.UpdateText(initialLifes);
     }
 
-    private void OnDeathWallHit(GameObject deathWall)
+    private void OnDeathWallHit(GameObject deathWall, Vector3 ballPosition)
     {
         LifeUI.Instance.UpdateText(--lifes);
         OnLifeLost?.Invoke(lifes);

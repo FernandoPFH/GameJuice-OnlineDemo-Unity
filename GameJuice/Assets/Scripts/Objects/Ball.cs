@@ -38,7 +38,7 @@ public class Ball : Singleton<Ball>
                 OnWallHit(other.GetComponent<Wall>());
                 break;
             case "DeathWall":
-                OnDeathWallHit(other.GetComponent<DeathWall>());
+                OnDeathWallHit(other.GetComponent<DeathWall>(), transform.position);
                 break;
             case "Bar":
                 OnBarHit(other.GetComponent<Bar>());
@@ -73,11 +73,11 @@ public class Ball : Singleton<Ball>
     private void OnWallHit(Wall wall)
         => wall.Hit();
 
-    private void OnDeathWallHit(DeathWall deathWall)
+    private void OnDeathWallHit(DeathWall deathWall, Vector3 ballPosition)
     {
         Reset();
 
-        deathWall.Hit();
+        deathWall.Hit(ballPosition);
     }
 
     private void OnBarHit(Bar bar)
@@ -90,10 +90,9 @@ public class Ball : Singleton<Ball>
 
     private void FixBallIsStuck()
     {
-        float angleX = Vector2.Angle(rigidbody.linearVelocity, Vector2.right);
-        float angleY = Vector2.Angle(rigidbody.linearVelocity, Vector2.up);
+        float angle = Vector2.Angle(rigidbody.linearVelocity, Vector2.right);
 
-        if ((Mathf.Abs(angleX - 90f) <= 5f || Mathf.Abs(angleX - 90f) <= 5f) || (Mathf.Abs(angleX - 90f) <= 5f || Mathf.Abs(angleX - 90f) <= 5f))
+        if (Mathf.Abs(angle - 90f) <= 5f || Mathf.Abs(angle - 180f) <= 5f)
             timesWhenBallMayBeStuck.Add(Time.time);
         else
             timesWhenBallMayBeStuck.Clear();
