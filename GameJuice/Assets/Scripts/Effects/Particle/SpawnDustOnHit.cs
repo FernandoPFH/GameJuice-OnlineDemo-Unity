@@ -10,8 +10,6 @@ public class SpawnDustOnHit : EffectSO
 
     private List<ParticleSystem> createdVFXs = new();
 
-    private ParticleSystem dustT;
-
 #if UNITY_EDITOR
     protected override void InitValues()
         => createdVFXs.Clear();

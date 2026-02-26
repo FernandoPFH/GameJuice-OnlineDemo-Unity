@@ -8,6 +8,7 @@ public class BallRefs : Singleton<BallRefs>
     public Rigidbody2D Rigidbody;
     public TrailRenderer Trail;
     public AudioSource Audio;
+    public GameObject FireTrail;
 
 #if UNITY_EDITOR
     private void OnValidate()
@@ -17,6 +18,7 @@ public class BallRefs : Singleton<BallRefs>
         Rigidbody = GetComponent<Rigidbody2D>();
         Trail = transform.Find("Trail").GetComponent<TrailRenderer>();
         Audio = transform.Find("Audio").GetComponent<AudioSource>();
+        FireTrail = transform.Find("FireTrail").gameObject;
     }
 #endif
 }
