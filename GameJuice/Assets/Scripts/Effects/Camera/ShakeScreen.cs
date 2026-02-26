@@ -20,7 +20,7 @@ public class ShakeScreen : EffectSO
     private void CancelAnimation()
         => LeanTween.cancelAll(Camera.main.transform);
 
-    private void OnBallHit(string otherTag)
+    private void OnBallHit(string otherTag, Vector2 point, Vector2 normal)
     {
         Vector3 pos = positionOffset;
 
