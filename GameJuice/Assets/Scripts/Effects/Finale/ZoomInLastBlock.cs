@@ -1,6 +1,5 @@
 using UnityEngine;
 using Unity.Cinemachine;
-using System.Linq;
 
 [CreateAssetMenu(fileName = "ZoomInLastBlock_EffectSO", menuName = "EffectSO/ZoomInLastBlock")]
 public class ZoomInLastBlock : EffectSO

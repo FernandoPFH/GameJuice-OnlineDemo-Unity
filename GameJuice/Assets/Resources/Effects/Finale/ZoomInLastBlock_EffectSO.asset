@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 471fdd695b588fc0f9f90d081f088bff, type: 3}
   m_Name: ZoomInLastBlock_EffectSO
   m_EditorClassIdentifier: Assembly-CSharp::ZoomInLastBlock
-  isEnabled: 1
+  isEnabled: 0
   cameraName: BallCloseUpCamera
   FOV: 34
