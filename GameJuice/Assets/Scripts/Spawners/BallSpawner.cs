@@ -58,7 +58,7 @@ public class BallSpawner : Singleton<BallSpawner>
 #if UNITY_EDITOR
     private float gizmosLength = 2f;
 
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.green;
         Gizmos.DrawSphere(transform.position, 0.2f);

@@ -1,6 +1,6 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
+using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
@@ -8,6 +8,7 @@ public class Ball : Singleton<Ball>
 {
     [SerializeField] private float blockHitVelocityMultiplier = 1.5f;
     [SerializeField] private float maxVelocity = 30f;
+    [SerializeField] private LayerMask layerMaskNextContacts;
 
     public static Action OnSpawn;
     public static Action<string, Vector2, Vector2> OnHit;
@@ -24,15 +25,19 @@ public class Ball : Singleton<Ball>
 
     private Vector2 velocity = Vector2.zero;
 
-    protected override void Awake()
-    {
-        base.Awake();
+    public BallTrajectoryPredic BallTrajectoryPredic { get; private set; }
 
-        rigidbody = GetComponent<Rigidbody2D>();
-    }
+    private void Start()
+        => BallTrajectoryPredic = new(layerMaskNextContacts, GetComponent<CircleCollider2D>().bounds.size.x);
 
     private void Update()
         => transform.position += (Vector3)velocity * Time.deltaTime;
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.purple;
+        BallTrajectoryPredic.DrawGizmos(this);
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -61,15 +66,24 @@ public class Ball : Singleton<Ball>
                 break;
         }
 
-        OnHit?.Invoke(other.tag, contactPoint.point, contactPoint.normal);
+        if (other.CompareTag("Block") || other.CompareTag("Bar"))
+            BallTrajectoryPredic.Clear();
+
+        if (BallTrajectoryPredic.CheckLayer(other.layer))
+            BallTrajectoryPredic.Dequeue();
 
         FixBallIsStuck();
+
+        BallTrajectoryPredic.CalculateNextContacts(contactPoint.point, contactPoint.normal, velocity);
+
+        OnHit?.Invoke(other.tag, contactPoint.point, contactPoint.normal);
     }
 
     public void Reset()
     {
         gameObject.SetActive(false);
-        rigidbody.linearVelocity = Vector2.zero;
+        velocity = Vector2.zero;
+        BallTrajectoryPredic.Clear();
     }
 
     public void Spawn()
@@ -102,7 +116,7 @@ public class Ball : Singleton<Ball>
 
     private void FixBallIsStuck()
     {
-        float angle = Vector2.Angle(rigidbody.linearVelocity, Vector2.right);
+        float angle = Vector2.Angle(velocity, Vector2.right);
 
         if (Mathf.Abs(angle - 90f) <= 5f || Mathf.Abs(angle - 180f) <= 5f)
             timesWhenBallMayBeStuck.Add(Time.time);
@@ -114,13 +128,15 @@ public class Ball : Singleton<Ball>
 
         if (timesWhenBallMayBeStuck.Count > minOccurancesToConciderStuck || Time.time - timesWhenBallMayBeStuck.First() > minTimeToConciderStuck)
         {
-            float currentVelocity = rigidbody.linearVelocity.magnitude;
+            float currentVelocity = velocity.magnitude;
 
             Vector2 randomVelocity = BallSpawner.GetRandomVelocity();
 
-            rigidbody.linearVelocity = -randomVelocity.normalized * currentVelocity;
+            velocity = -randomVelocity.normalized * currentVelocity;
 
             timesWhenBallMayBeStuck.Clear();
+
+            BallTrajectoryPredic.Clear();
         }
     }
 }

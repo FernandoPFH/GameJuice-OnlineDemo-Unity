@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 471fdd695b588fc0f9f90d081f088bff, type: 3}
+  m_Name: ZoomInLastBlock_EffectSO
+  m_EditorClassIdentifier: Assembly-CSharp::ZoomInLastBlock
+  isEnabled: 1
+  cameraName: BallCloseUpCamera
+  FOV: 34

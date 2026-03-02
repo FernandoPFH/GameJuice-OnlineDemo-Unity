@@ -28,7 +28,7 @@ public class EffectsHandler : MonoBehaviour
     private void OnValidate()
         => effects = Resources.LoadAll<EffectSO>("Effects").ToList();
 
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         foreach (EffectSO effect in effects)
             effect.OnGizmosDraw();

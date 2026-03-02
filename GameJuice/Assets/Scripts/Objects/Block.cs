@@ -60,6 +60,9 @@ public class Block : MonoBehaviour
         SetBlockState(BlockState.Enabled);
         gameObject.GetComponent<BoxCollider2D>().enabled = true;
         gameObject.SetActive(true);
+        Color color = BlockRefs.Instances[this].Renderer.color;
+        color.a = 1f;
+        BlockRefs.Instances[this].Renderer.color = color;
     }
 
     public void Hit(Vector3 ballVelocity)
