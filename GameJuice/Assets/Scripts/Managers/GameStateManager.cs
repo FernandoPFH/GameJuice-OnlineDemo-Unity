@@ -45,13 +45,24 @@ public class GameStateManager : Singleton<GameStateManager>
                     AdvanceState();
 
                 break;
+            case GameState.EndAnimation:
+                if (!waitPerGameState.TryGetValue(GameState, out List<Func<bool>> eWaits))
+                {
+                    ResetGame();
+                    break;
+                }
+
+                if (eWaits.Count == 0 || eWaits.All(x => x()))
+                    ResetGame();
+
+                break;
         }
     }
 
     private void OnBlockHit(GameObject block, int blocksLefted, Vector3 ballVelocity)
     {
         if (blocksLefted == 0)
-            ResetGame();
+            SetGameState(GameState.EndAnimation);
     }
 
     private void OnLifeLost(int lifesLefted)
@@ -104,5 +115,6 @@ public enum GameState
 {
     GameSpaceAnimation,
     BallAnimation,
-    GameLoop
+    GameLoop,
+    EndAnimation
 }
