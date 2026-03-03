@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a922aa2ef88bf3ee91d34b3f046bdb4, type: 3}
   m_Name: AddBallTrail_EffectSO
   m_EditorClassIdentifier: Assembly-CSharp::AddTrailBall
-  isEnabled: 1
+  isEnabled: 0
