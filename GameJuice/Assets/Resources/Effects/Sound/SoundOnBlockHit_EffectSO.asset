@@ -16,3 +16,5 @@ MonoBehaviour:
   audio: {fileID: 8300000, guid: f91c62d69c969fa9dabcd4d94e7b43b6, type: 3}
   minPitch: 1
   maxPitch: 3
+  maxCombo: 10
+  timeToResetCombo: 1
