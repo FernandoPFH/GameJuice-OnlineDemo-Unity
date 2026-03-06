@@ -1,10 +1,19 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "SoundOnBackground_EffectSO", menuName = "EffectSO/SoundOnBackground")]
+[CreateAssetMenu(fileName = "SoundOnBackground_EffectSO", menuName = "EffectSO/Sound/SoundOnBackground")]
 public class SoundOnBackground : EffectSO
 {
     [SerializeField] private float fadeInTime = 2f;
     [SerializeField] private LeanTweenType easingMode = LeanTweenType.easeInOutExpo;
+
+    public float FadeInTime => fadeInTime;
+    public LeanTweenType EasingMode => easingMode;
+
+    public void OnFadeInTimeChanged(float time)
+        => fadeInTime = time;
+
+    public void OnEasingModeChanged(LeanTweenType type)
+        => easingMode = type;
 
     private void UpdateVolume(float volume)
         => Background.Instance.AudioSource.volume = volume;

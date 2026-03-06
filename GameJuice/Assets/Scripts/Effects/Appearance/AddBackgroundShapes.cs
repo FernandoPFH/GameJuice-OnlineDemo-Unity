@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 using Random = UnityEngine.Random;
 
-[CreateAssetMenu(fileName = "AddBackgroundShapes_EffectSO", menuName = "EffectSO/AddBackgroundShapes")]
+[CreateAssetMenu(fileName = "AddBackgroundShapes_EffectSO", menuName = "EffectSO/Appearance/AddBackgroundShapes")]
 public class AddBackgroundShapes_EffectSO : EffectSO
 {
     [SerializeField] private List<GameObject> shapes;
@@ -19,6 +19,16 @@ public class AddBackgroundShapes_EffectSO : EffectSO
     [SerializeField] private float maxSpawnScale = 0.2f;
 
     [SerializeField] private int numOfShapesToSpawn = 5;
+
+    public Color ShapesColor => shapesColor;
+
+    public float MinSpawnAreaDiameter => minSpawnAreaDiameter;
+    public float MaxSpawnAreaDiameter => maxSpawnAreaDiameter;
+
+    public float MinSpawnScale => minSpawnScale;
+    public float MaxSpawnScale => maxSpawnScale;
+
+    public int NumOfShapesToSpawn => numOfShapesToSpawn;
 
     private float initialAngle = 0f;
 
@@ -202,7 +212,10 @@ public class AddBackgroundShapes_EffectSO : EffectSO
     private void DespawnShapes()
     {
         foreach ((GameObject shape, Vector3 _) in instanciatedShapes)
+        {
             LeanTween.cancelAll(shape);
+            Destroy(shape);
+        }
 
         instanciatedShapes.Clear();
     }

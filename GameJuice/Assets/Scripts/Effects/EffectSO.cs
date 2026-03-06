@@ -6,6 +6,19 @@ public abstract class EffectSO : ScriptableObject
 {
     [SerializeField] protected bool isEnabled;
 
+    public bool IsEnabled => isEnabled;
+
+    public void OnIsEnabled(bool isEnabled)
+    {
+        bool lastEnabled = this.isEnabled;
+        this.isEnabled = isEnabled;
+
+        if (!lastEnabled && isEnabled)
+            OnEnabled();
+        else if (lastEnabled && !isEnabled)
+            OnDisabled();
+    }
+
 #if UNITY_EDITOR
     private bool lastIsEnabledStatus;
 #endif
@@ -22,6 +35,9 @@ public abstract class EffectSO : ScriptableObject
     public virtual void OnUpdate()
     {
 #if UNITY_EDITOR
+        if (EffectHandler.Names.Contains(name.Replace("_EffectSO", "")))
+            return;
+
         if (lastIsEnabledStatus != isEnabled)
         {
             lastIsEnabledStatus = isEnabled;

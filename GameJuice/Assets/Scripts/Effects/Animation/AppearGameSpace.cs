@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Linq;
 using System.Collections.Generic;
 
-[CreateAssetMenu(fileName = "AppearGameSpace_EffectSO", menuName = "EffectSO/AppearGameSpace")]
+[CreateAssetMenu(fileName = "AppearGameSpace_EffectSO", menuName = "EffectSO/Animation/AppearGameSpace")]
 public class AppearGameSpace : EffectSO
 {
     [SerializeField] private float timeToAppear = 2f;
@@ -18,6 +18,20 @@ public class AppearGameSpace : EffectSO
     [SerializeField] private bool shouldHaveDelay;
     [SerializeField] private float minDelay = 0f;
     [SerializeField] private float maxDelay = 0.2f;
+
+    public float TimeToAppear => timeToAppear;
+    public LeanTweenType EasingMode => easingMode;
+
+    public bool AffectPosition => affectPosition;
+    public Vector3 PositionOffset => positionOffset;
+    public bool AffectRotation => affectRotation;
+    public Vector3 RotationOffset => rotationOffset;
+    public bool AffectScale => affectScale;
+    public Vector3 ScaleMultiplier => scaleMultiplier;
+
+    public bool ShouldHaveDelay => shouldHaveDelay;
+    public float MinDelay => minDelay;
+    public float MaxDelay => maxDelay;
 
     private bool hasAnimationStarted;
     private int numOfAnimationsToFinish;
@@ -66,7 +80,7 @@ public class AppearGameSpace : EffectSO
         CheckValueChanged(ref lastAffectRotation, affectRotation, OnAffectRotationChanged);
         CheckValueChanged(ref lastRotationOffset, rotationOffset, OnRotationOffsetChanged);
         CheckValueChanged(ref lastAffectScale, affectScale, OnAffectScaleChanged);
-        CheckValueChanged(ref lastScaleMultiplier, scaleMultiplier, OnScaleOffsetChanged);
+        CheckValueChanged(ref lastScaleMultiplier, scaleMultiplier, OnScaleMultiplierChanged);
         CheckValueChanged(ref lastShouldHaveDelay, shouldHaveDelay, OnShouldHaveDelayChanged);
         CheckValueChanged(ref lastMinDelay, minDelay, OnMinDelayChanged);
         CheckValueChanged(ref lastMaxDelay, maxDelay, OnMaxDelayChanged);
@@ -122,7 +136,7 @@ public class AppearGameSpace : EffectSO
             GameStateManager.Instance.ResetGame();
     }
 
-    public void OnScaleOffsetChanged(Vector3 scale)
+    public void OnScaleMultiplierChanged(Vector3 scale)
     {
         scaleMultiplier = scale;
         if (isEnabled)

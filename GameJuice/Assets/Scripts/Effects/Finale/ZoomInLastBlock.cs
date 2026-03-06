@@ -1,11 +1,13 @@
 using UnityEngine;
 using Unity.Cinemachine;
 
-[CreateAssetMenu(fileName = "ZoomInLastBlock_EffectSO", menuName = "EffectSO/ZoomInLastBlock")]
+[CreateAssetMenu(fileName = "ZoomInLastBlock_EffectSO", menuName = "EffectSO/Finale/ZoomInLastBlock")]
 public class ZoomInLastBlock : EffectSO
 {
     [SerializeField] private string cameraName;
-    [SerializeField] private float FOV = 34f;
+    [SerializeField] private float Fov = 34f;
+
+    public float FOV => Fov;
 
 #if UNITY_EDITORa
     private float lastFOV;
@@ -19,7 +21,7 @@ public class ZoomInLastBlock : EffectSO
 
     public void OnFOVChanged(float fov)
     {
-        FOV = fov;
+        Fov = fov;
         if (isEnabled && IsTimeToZoom())
             SetupCamera();
     }
@@ -40,7 +42,7 @@ public class ZoomInLastBlock : EffectSO
         CinemachineCamera camera = CameraRefs.Cameras[cameraName];
 
         camera.gameObject.SetActive(true);
-        camera.Lens.FieldOfView = FOV;
+        camera.Lens.FieldOfView = Fov;
     }
 
     private void OnBallHit(string otherTag, Vector2 point, Vector2 normal)

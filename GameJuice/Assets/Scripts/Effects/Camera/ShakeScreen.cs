@@ -1,13 +1,18 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-[CreateAssetMenu(fileName = "ShakeScreen_EffectSO", menuName = "EffectSO/ShakeScreen")]
+[CreateAssetMenu(fileName = "ShakeScreen_EffectSO", menuName = "EffectSO/Camera/ShakeScreen")]
 public class ShakeScreen : EffectSO
 {
     [SerializeField] private Vector3 positionOffset;
     [SerializeField] private float blockMultiplier = 1.5f;
     [SerializeField] private float animationTime = 0.5f;
     [SerializeField] private LeanTweenType easingMode = LeanTweenType.easeInOutExpo;
+
+    public Vector3 PositionOffset => positionOffset;
+    public float BlockMultiplier => blockMultiplier;
+    public float AnimationTime => animationTime;
+    public LeanTweenType EasingMode => easingMode;
 
     public void OnPositionOffsetChanged(Vector3 pos)
         => positionOffset = pos;

@@ -2,10 +2,12 @@ using UnityEngine;
 using System.Linq;
 using System.Collections.Generic;
 
-[CreateAssetMenu(fileName = "SpawnTrailBallFast_EffectSO", menuName = "EffectSO/SpawnTrailBallFast")]
+[CreateAssetMenu(fileName = "SpawnTrailBallFast_EffectSO", menuName = "EffectSO/Particle/SpawnTrailBallFast")]
 public class SpawnTrailBallFast : EffectSO
 {
     [SerializeField] private float ballVelocityThreshold = 10f;
+
+    public float BallVelocityThreshold => ballVelocityThreshold;
 
     public void OnBallVelocityThresholdChanged(float threshould)
         => ballVelocityThreshold = threshould;

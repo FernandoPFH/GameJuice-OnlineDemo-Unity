@@ -1,11 +1,15 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "LightBackgroundOnHit_EffectSO", menuName = "EffectSO/LightBackgroundOnHit")]
+[CreateAssetMenu(fileName = "LightBackgroundOnHit_EffectSO", menuName = "EffectSO/Hit/LightBackgroundOnHit")]
 public class LightBackgroundOnHit : EffectSO
 {
     [SerializeField] private float colorMultiplier = 1.2f;
     [SerializeField] private float animationTime = 0.2f;
     [SerializeField] private LeanTweenType easingMode = LeanTweenType.easeInOutExpo;
+
+    public float ColorMultiplier => colorMultiplier;
+    public float AnimationTime => animationTime;
+    public LeanTweenType EasingMode => easingMode;
 
     public void OnColorMultiplierChanged(float mult)
         => colorMultiplier = mult;

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 using Random = UnityEngine.Random;
 
-[CreateAssetMenu(fileName = "AddMultipleTiles_EffectSO", menuName = "EffectSO/AddMultipleTiles")]
+[CreateAssetMenu(fileName = "AddMultipleTiles_EffectSO", menuName = "EffectSO/Appearance/AddMultipleTiles")]
 public class AddMultipleTiles_EffectSO : EffectSO
 {
     [SerializeField] private List<SpriteChance> spriteChances;

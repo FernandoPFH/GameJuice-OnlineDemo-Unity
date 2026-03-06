@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-[CreateAssetMenu(fileName = "DisappearBlockOnHit_EffectSO", menuName = "EffectSO/DisappearBlockOnHit")]
+[CreateAssetMenu(fileName = "DisappearBlockOnHit_EffectSO", menuName = "EffectSO/Hit/DisappearBlockOnHit")]
 public class DisappearBlockOnHit : EffectSO
 {
     [SerializeField] private DisappearBlockOnHitEffect effect;
@@ -9,6 +9,12 @@ public class DisappearBlockOnHit : EffectSO
     [SerializeField] private float pushMultiplier = 1f;
     [SerializeField] private float animationTime = 0.5f;
     [SerializeField] private LeanTweenType easingMode = LeanTweenType.easeInOutExpo;
+
+    public DisappearBlockOnHitEffect Effect => effect;
+    public Vector3 PositionOffset => positionOffset;
+    public float PushMultiplier => pushMultiplier;
+    public float AnimationTime => animationTime;
+    public LeanTweenType EasingMode => easingMode;
 
     private bool hasAnimationStarted;
     private int numOfAnimationsToFinish;

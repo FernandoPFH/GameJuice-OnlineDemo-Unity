@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Linq;
 
-[CreateAssetMenu(fileName = "TriggerHitStop_EffectSO", menuName = "EffectSO/TriggerHitStop")]
+[CreateAssetMenu(fileName = "TriggerHitStop_EffectSO", menuName = "EffectSO/Hit/TriggerHitStop")]
 public class TriggerHitStop : EffectSO
 {
     [SerializeField] private AnimationCurve timeScaleOverTime;

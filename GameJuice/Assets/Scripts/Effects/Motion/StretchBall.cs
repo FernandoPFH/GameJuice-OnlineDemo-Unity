@@ -1,11 +1,15 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "StrechBall_EffectSO", menuName = "EffectSO/StrechBall")]
+[CreateAssetMenu(fileName = "StrechBall_EffectSO", menuName = "EffectSO/Motion/StrechBall")]
 public class StretchBall : EffectSO
 {
     [SerializeField] private float maxStretch = 2f;
     [SerializeField] private float maxShort = 0.9f;
     [SerializeField] private float maxVelocityRef = 2f;
+
+    public float MaxStretch => maxStretch;
+    public float MaxShort => maxShort;
+    public float MaxVelocityRef => maxVelocityRef;
 
     public void OnMaxStretchChanged(float stretch)
         => maxStretch = stretch;

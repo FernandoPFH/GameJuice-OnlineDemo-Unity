@@ -1,11 +1,15 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ChangeBallColorOnHit_EffectSO", menuName = "EffectSO/ChangeBallColorOnHit")]
+[CreateAssetMenu(fileName = "ChangeBallColorOnHit_EffectSO", menuName = "EffectSO/Hit/ChangeBallColorOnHit")]
 public class ChangeBallColorOnHit : EffectSO
 {
     [SerializeField] private Color endColor;
     [SerializeField] private float animationTime = 0.2f;
     [SerializeField] private LeanTweenType easingMode = LeanTweenType.easeInOutExpo;
+
+    public Color EndColor => endColor;
+    public float AnimationTime => animationTime;
+    public LeanTweenType EasingMode => easingMode;
 
     public void OnEndColorChanged(Color color)
         => endColor = color;

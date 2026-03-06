@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "AddBallTrail_EffectSO", menuName = "EffectSO/AddBallTrail")]
+[CreateAssetMenu(fileName = "AddBallTrail_EffectSO", menuName = "EffectSO/Motion/AddBallTrail")]
 public class AddTrailBall : EffectSO
 {
     private void SetBallTrail()

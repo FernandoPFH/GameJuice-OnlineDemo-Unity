@@ -1,7 +1,7 @@
 using UnityEngine;
 using Unity.Cinemachine;
 
-[CreateAssetMenu(fileName = "SlowMotionInLastBlock_EffectSO", menuName = "EffectSO/SlowMotionInLastBlock")]
+[CreateAssetMenu(fileName = "SlowMotionInLastBlock_EffectSO", menuName = "EffectSO/Finale/SlowMotionInLastBlock")]
 public class SlowMotionInLastBlock : EffectSO
 {
     [SerializeField] private AnimationCurve slowDownOverTime;

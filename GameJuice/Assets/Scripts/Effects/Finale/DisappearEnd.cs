@@ -2,14 +2,18 @@ using UnityEngine;
 using System.Linq;
 using System.Collections.Generic;
 
-[CreateAssetMenu(fileName = "DisappearEnd_EffectSO", menuName = "EffectSO/DisappearEnd")]
+[CreateAssetMenu(fileName = "DisappearEnd_EffectSO", menuName = "EffectSO/Finale/DisappearEnd")]
 public class DisappearEnd : EffectSO
 {
     [SerializeField] private Material material;
+    [SerializeField] private string propertyName = "_PosicaoTransicao";
+    [SerializeField] private float maxPosition = 1.5f;
+
     [SerializeField] private float timeToDisappear = 2f;
     [SerializeField] private LeanTweenType easingMode = LeanTweenType.easeInOutExpo;
 
-    [SerializeField] private float maxPosition = 1.5f;
+    public float TimeToDisappear => timeToDisappear;
+    public LeanTweenType EasingMode => easingMode;
 
     private bool hasAnimationStarted;
     private int numOfAnimationsToFinish;
@@ -28,11 +32,8 @@ public class DisappearEnd : EffectSO
     public void OnEasingModeChanged(LeanTweenType type)
         => easingMode = type;
 
-    public void OnMaxPositionChanged(float pos)
-        => maxPosition = pos;
-
     private void UpdatePostProcessing(float pos)
-        => material.SetFloat("_PosicaoTransicao", pos);
+        => material.SetFloat(propertyName, pos);
 
     private void StartAnimation()
     {

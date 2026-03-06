@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "SoundOnBlockHit_EffectSO", menuName = "EffectSO/SoundOnBlockHit")]
+[CreateAssetMenu(fileName = "SoundOnBlockHit_EffectSO", menuName = "EffectSO/Sound/SoundOnBlockHit")]
 public class SoundOnBlockHit : EffectSO
 {
     [SerializeField] private AudioClip audio;
@@ -8,6 +8,11 @@ public class SoundOnBlockHit : EffectSO
     [SerializeField] private float maxPitch = 2f;
     [SerializeField] private int maxCombo = 10;
     [SerializeField] private float timeToResetCombo = 1f;
+
+    public float MinPitch => minPitch;
+    public float MaxPitch => maxPitch;
+    public int MaxCombo => maxCombo;
+    public float TimeToResetCombo => timeToResetCombo;
 
     private int currentCombo = 0;
     private float timeSinceLastHit = float.MinValue;

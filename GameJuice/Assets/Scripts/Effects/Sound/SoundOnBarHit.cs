@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "SoundOnBarHit_EffectSO", menuName = "EffectSO/SoundOnBarHit")]
+[CreateAssetMenu(fileName = "SoundOnBarHit_EffectSO", menuName = "EffectSO/Sound/SoundOnBarHit")]
 public class SoundOnBarHit : EffectSO
 {
     [SerializeField] private AudioClip audio;

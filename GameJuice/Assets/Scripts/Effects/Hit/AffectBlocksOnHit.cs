@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Linq;
 using System.Collections.Generic;
 
-[CreateAssetMenu(fileName = "AffectBlocksOnHit_EffectSO", menuName = "EffectSO/AffectBlocksOnHit")]
+[CreateAssetMenu(fileName = "AffectBlocksOnHit_EffectSO", menuName = "EffectSO/Hit/AffectBlocksOnHit")]
 public class AffectBlocksOnHit : EffectSO
 {
     [SerializeField] private AffectBlocksOnHitEffect effect;
@@ -11,10 +11,16 @@ public class AffectBlocksOnHit : EffectSO
     [SerializeField] private float animationTime = 0.2f;
     [SerializeField] private LeanTweenType easingMode = LeanTweenType.easeInOutExpo;
 
+    public AffectBlocksOnHitEffect Effect => effect;
+    public float ScaleMultiplier => scaleMultiplier;
+    public Vector3 PositionOffset => positionOffset;
+    public float AnimationTime => animationTime;
+    public LeanTweenType EasingMode => easingMode;
+
     public void OnEffectChanged(AffectBlocksOnHitEffect effect)
         => this.effect = effect;
 
-    public void OnScaleMultiplerChanged(float mult)
+    public void OnScaleMultiplierChanged(float mult)
         => scaleMultiplier = mult;
 
     public void OnPositionOffsetChanged(Vector3 offset)

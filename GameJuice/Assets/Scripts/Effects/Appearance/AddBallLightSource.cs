@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "AddBallLightSource_EffectSO", menuName = "EffectSO/AddBallLightSource")]
+[CreateAssetMenu(fileName = "AddBallLightSource_EffectSO", menuName = "EffectSO/Appearance/AddBallLightSource")]
 public class AddBallLightSource_EffectSO : EffectSO
 {
     private void SetBallLight()

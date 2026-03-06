@@ -2,11 +2,13 @@ using UnityEngine;
 using System.Linq;
 using System.Collections.Generic;
 
-[CreateAssetMenu(fileName = "SpawnDustOnHit_EffectSO", menuName = "EffectSO/SpawnDustOnHit")]
+[CreateAssetMenu(fileName = "SpawnDustOnHit_EffectSO", menuName = "EffectSO/Particle/SpawnDustOnHit")]
 public class SpawnDustOnHit : EffectSO
 {
     [SerializeField] private GameObject dustPrefab;
     [SerializeField] private float scaleMultiplier = 0.5f;
+
+    public float ScaleMultiplier => scaleMultiplier;
 
     private List<ParticleSystem> createdVFXs = new();
 

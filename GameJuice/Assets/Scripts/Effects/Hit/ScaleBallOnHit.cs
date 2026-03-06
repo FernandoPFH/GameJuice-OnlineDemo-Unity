@@ -1,11 +1,15 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ScaleBallOnHit_EffectSO", menuName = "EffectSO/ScaleBallOnHit")]
+[CreateAssetMenu(fileName = "ScaleBallOnHit_EffectSO", menuName = "EffectSO/Hit/ScaleBallOnHit")]
 public class ScaleBallOnHit : EffectSO
 {
     [SerializeField] private float scaleMultiplier = 1.2f;
     [SerializeField] private float animationTime = 0.2f;
     [SerializeField] private LeanTweenType easingMode = LeanTweenType.easeInOutExpo;
+
+    public float ScaleMultiplier => scaleMultiplier;
+    public float AnimationTime => animationTime;
+    public LeanTweenType EasingMode => easingMode;
 
     private void OnScaleMultiplierChanged(float scale)
         => scaleMultiplier = scale;

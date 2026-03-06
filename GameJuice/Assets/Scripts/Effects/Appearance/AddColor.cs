@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "AddColor_EffectSO", menuName = "EffectSO/AddColor")]
+[CreateAssetMenu(fileName = "AddColor_EffectSO", menuName = "EffectSO/Appearance/AddColor")]
 public class AddColor_EffectSO : EffectSO
 {
     [SerializeField] private Color blockColor = Color.grey;
@@ -8,6 +8,12 @@ public class AddColor_EffectSO : EffectSO
     [SerializeField] private Color barColor = Color.grey;
     [SerializeField] private Color ballColor = Color.grey;
     [SerializeField] private Color backgroundColor = Color.darkGray;
+
+    public Color BlockColor => blockColor;
+    public Color WallColor => wallColor;
+    public Color BarColor => barColor;
+    public Color BallColor => ballColor;
+    public Color BackgroundColor => backgroundColor;
 
 #if UNITY_EDITOR
     private Color lastBlockColor;
@@ -78,7 +84,7 @@ public class AddColor_EffectSO : EffectSO
     private void SetBlockColor()
     {
         foreach (Block block in Block.Instances)
-            block.GetComponent<SpriteRenderer>().color = blockColor;
+            BlockRefs.Instances[block].Renderer.color = blockColor;
     }
 
     private void SetWallColor()
@@ -99,7 +105,7 @@ public class AddColor_EffectSO : EffectSO
     private void ResetBlockColor()
     {
         foreach (Block block in Block.Instances)
-            block.GetComponent<SpriteRenderer>().color = AppearanceDefaults.Instance.SpriteColor;
+            BlockRefs.Instances[block].Renderer.color = AppearanceDefaults.Instance.SpriteColor;
     }
 
     private void ResetWallColor()
