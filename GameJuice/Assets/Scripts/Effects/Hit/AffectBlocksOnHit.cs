@@ -58,7 +58,7 @@ public class AffectBlocksOnHit : EffectSO
     private void CancelAnimation()
     {
         foreach (Block block in Block.Instances)
-            LeanTween.cancelAll(BlockRefs.Instances[block].Renderer.transform);
+            LeanTween.cancel(BlockRefs.Instances[block].Renderer.gameObject,true);
     }
 
     private void OnBlockHit(GameObject block, int count, Vector3 ballVelocity)

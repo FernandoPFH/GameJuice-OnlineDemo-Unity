@@ -70,7 +70,7 @@ public class DisappearBlockOnHit : EffectSO
     private void CancelAnimation()
     {
         foreach (Block block in Block.Instances)
-            LeanTween.cancelAll(BlockRefs.Instances[block].Renderer.transform);
+            LeanTween.cancel(BlockRefs.Instances[block].Renderer.gameObject,true);
     }
 
     private void OnBlockStateChange(Block block, BlockState state)

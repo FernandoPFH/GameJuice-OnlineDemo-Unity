@@ -119,7 +119,7 @@ public class AppearBall : EffectSO
     }
 
     private void CancelAnimation()
-            => LeanTween.cancelAll(Ball.Instance.transform);
+        => LeanTween.cancel(Ball.Instance.gameObject,true);
 
     private bool HasAppearBallAnimationFinished()
     {

@@ -27,7 +27,7 @@ public class SoundOnBackground : EffectSO
 
     private void CancelFadeIn()
     {
-        LeanTween.cancelAll(Background.Instance.gameObject);
+        LeanTween.cancel(Background.Instance.gameObject,true);
         Background.Instance.AudioSource.Stop();
     }
 

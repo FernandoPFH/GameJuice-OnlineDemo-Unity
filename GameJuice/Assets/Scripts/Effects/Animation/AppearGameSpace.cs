@@ -214,17 +214,17 @@ public class AppearGameSpace : EffectSO
 
     private void CancelAnimation()
     {
-        List<Transform> objectsToAnimate = new()
+        List<GameObject> objectsToAnimate = new()
         {
-            Bar.Instance.transform,
-            DeathWall.Instance.transform
+            Bar.Instance.gameObject,
+            DeathWall.Instance.gameObject
         };
 
-        objectsToAnimate.AddRange(Wall.Instances.Select(x => x.transform));
-        objectsToAnimate.AddRange(Block.Instances.Select(x => x.transform));
+        objectsToAnimate.AddRange(Wall.Instances.Select(x => x.gameObject));
+        objectsToAnimate.AddRange(Block.Instances.Select(x => x.gameObject));
 
-        foreach (Transform obj in objectsToAnimate)
-            LeanTween.cancelAll(obj);
+        foreach (GameObject obj in objectsToAnimate)
+            LeanTween.cancel(obj,true);
     }
 
     private bool HasAppearGameSpaceAnimationFinished()

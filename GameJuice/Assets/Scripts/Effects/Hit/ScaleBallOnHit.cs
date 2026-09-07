@@ -29,7 +29,7 @@ public class ScaleBallOnHit : EffectSO
 
     private void CancelAnimation()
     {
-        LeanTween.cancelAll(BallRefs.Instance.Renderer.transform);
+        LeanTween.cancel(BallRefs.Instance.Renderer.gameObject,true);
         BallRefs.Instance.Renderer.transform.localScale = Vector3.one;
     }
 

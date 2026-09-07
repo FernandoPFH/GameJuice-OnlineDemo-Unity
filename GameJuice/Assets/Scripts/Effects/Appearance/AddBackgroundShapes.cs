@@ -210,10 +210,10 @@ public class AddBackgroundShapes_EffectSO : EffectSO
     }
 
     private void DespawnShapes()
-    {
+    {        
         foreach ((GameObject shape, Vector3 _) in instanciatedShapes)
         {
-            LeanTween.cancelAll(shape);
+            LeanTween.cancel(shape);
             Destroy(shape);
         }
 

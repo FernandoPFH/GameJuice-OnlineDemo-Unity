@@ -26,7 +26,7 @@ public class LightBackgroundOnHit : EffectSO
     private void StartAnimation()
     {
         if (LeanTween.isTweening(Background.Instance.gameObject))
-            LeanTween.cancelAll(Background.Instance.gameObject);
+            LeanTween.cancel(Background.Instance.gameObject,true);
 
         LTSeq seq = LeanTween.sequence();
 
@@ -38,7 +38,7 @@ public class LightBackgroundOnHit : EffectSO
 
     private void CancelAnimation()
     {
-        LeanTween.cancelAll(Background.Instance.transform);
+        LeanTween.cancel(Background.Instance.gameObject,true);
     }
 
     private void OnBlockHit(GameObject block, int count, Vector3 ballVelocity)
