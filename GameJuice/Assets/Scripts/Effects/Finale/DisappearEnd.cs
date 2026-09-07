@@ -35,18 +35,18 @@ public class DisappearEnd : EffectSO
     private void UpdatePostProcessing(float pos)
         => material.SetFloat(propertyName, pos);
 
-    private void StartAnimation()
+    private void StartAnimation(float inicialValue, float finalValue)
     {
         numOfAnimationsToFinish = 0;
         hasAnimationStarted = true;
 
         numOfAnimationsToFinish++;
 
-        LeanTween.value(Background.Instance.gameObject, UpdatePostProcessing, 0f, maxPosition, timeToDisappear).setEase(easingMode).setOnComplete(() => { numOfAnimationsToFinish--; UpdatePostProcessing(maxPosition); });
+        LeanTween.value(Background.Instance.gameObject, UpdatePostProcessing, inicialValue, finalValue, timeToDisappear).setEase(easingMode).setOnComplete(() => { numOfAnimationsToFinish--; UpdatePostProcessing(finalValue); });
     }
 
     private void CancelAnimation()
-            => LeanTween.cancelAll(Background.Instance.gameObject);
+            => LeanTween.cancel(Background.Instance.gameObject, true);
 
     private bool HasDisappearEndAnimationFinished()
     {
@@ -62,12 +62,34 @@ public class DisappearEnd : EffectSO
         return true;
     }
 
+    private bool HasAppearStartAnimationFinished()
+    {
+        if (!isEnabled)
+            return true;
+
+        if (!hasAnimationStarted)
+            return false;
+
+        if (numOfAnimationsToFinish > 0)
+            return false;
+
+        return true;
+    }
+
     private void OnGameStateChange(GameState state)
     {
-        if (state is not GameState.EndAnimation)
-            return;
-
-        StartAnimation();
+        switch (state)
+        {
+            case GameState.GameSpaceAnimation:
+                StartAnimation(maxPosition, 0f);
+                break;
+            case GameState.EndAnimation:
+                StartAnimation(0f, maxPosition);
+                break;
+            default:
+                OnGameReset();
+                break;
+        }
     }
 
     private void OnGameReset()
@@ -80,6 +102,7 @@ public class DisappearEnd : EffectSO
     public override void OnEnabled()
     {
         GameStateManager.Instance.RegisterWait(GameState.EndAnimation, HasDisappearEndAnimationFinished);
+        GameStateManager.Instance.RegisterWait(GameState.GameSpaceAnimation, HasAppearStartAnimationFinished);
         GameStateManager.OnGameStateChange += OnGameStateChange;
         GameStateManager.OnGameReset += OnGameReset;
 
@@ -89,6 +112,7 @@ public class DisappearEnd : EffectSO
     public override void OnDisabled()
     {
         GameStateManager.Instance.UnregisterWait(GameState.EndAnimation, HasDisappearEndAnimationFinished);
+        GameStateManager.Instance.UnregisterWait(GameState.GameSpaceAnimation, HasAppearStartAnimationFinished);
         GameStateManager.OnGameStateChange -= OnGameStateChange;
         GameStateManager.OnGameReset -= OnGameReset;
 

@@ -9,7 +9,7 @@ public class ZoomInLastBlock : EffectSO
 
     public float FOV => Fov;
 
-#if UNITY_EDITORa
+#if UNITY_EDITOR
     private float lastFOV;
 
     protected override void InitValues()
@@ -41,12 +41,20 @@ public class ZoomInLastBlock : EffectSO
     {
         CinemachineCamera camera = CameraRefs.Cameras[cameraName];
 
+        camera.Follow = Ball.Instance.transform;
         camera.gameObject.SetActive(true);
         camera.Lens.FieldOfView = Fov;
     }
 
     private void OnBallHit(string otherTag, Vector2 point, Vector2 normal)
     {
+        if (Block.Count == 0)
+        {
+            CinemachineCamera camera = CameraRefs.Cameras[cameraName];
+            camera.gameObject.SetActive(false);
+            return;
+        }
+
         if (IsTimeToZoom())
             SetupCamera();
     }

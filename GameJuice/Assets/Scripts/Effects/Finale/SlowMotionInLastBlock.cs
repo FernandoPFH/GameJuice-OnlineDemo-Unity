@@ -6,11 +6,11 @@ public class SlowMotionInLastBlock : EffectSO
 {
     [SerializeField] private AnimationCurve slowDownOverTime;
 
-    private float timeElapsed = float.MinValue;
+    private float frameWhenStarted = float.MinValue;
 
 #if UNITY_EDITOR
     protected override void InitValues()
-        => timeElapsed = float.MinValue;
+        => frameWhenStarted = float.MinValue;
 #endif
 
     public override void OnUpdate()
@@ -18,18 +18,15 @@ public class SlowMotionInLastBlock : EffectSO
         base.OnUpdate();
 
         if (!isEnabled)
-            return;
-
-        float framesSinceStart = Time.time - timeElapsed;
-
-        if (framesSinceStart < 0 || framesSinceStart > slowDownOverTime.keys[slowDownOverTime.length - 1].time)
+            return;       
+            
+        if (frameWhenStarted < 0)
         {
             Time.timeScale = 1f;
             return;
         }
 
-        Time.timeScale = slowDownOverTime.Evaluate(framesSinceStart);
-
+        Time.timeScale = slowDownOverTime.Evaluate(Time.time - frameWhenStarted);
     }
 
     private bool IsTimeToZoom()
@@ -45,8 +42,15 @@ public class SlowMotionInLastBlock : EffectSO
 
     private void OnBallHit(string otherTag, Vector2 point, Vector2 normal)
     {
-        if (Time.time - timeElapsed < 0 && IsTimeToZoom())
-            timeElapsed = Time.time;
+        if (Block.Count == 0)
+        {
+            Time.timeScale = 1f;
+            frameWhenStarted = float.MinValue;
+            return;
+        }
+
+        if (frameWhenStarted - Time.time  < 0 && IsTimeToZoom())
+            frameWhenStarted = Time.time;
     }
 
     public override void OnEnabled()
@@ -54,7 +58,7 @@ public class SlowMotionInLastBlock : EffectSO
         Ball.OnHit += OnBallHit;
 
         if (IsTimeToZoom())
-            timeElapsed = Time.time;
+            frameWhenStarted = Time.time;
     }
 
     public override void OnDisabled()
