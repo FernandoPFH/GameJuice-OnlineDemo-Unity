@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ShakeScreen_EffectSO
   m_EditorClassIdentifier: Assembly-CSharp::ShakeScreen
   isEnabled: 0
-  positionOffset: {x: 0.05, y: 0.05, z: 0}
+  baseAmplitude: 0.5
   blockMultiplier: 2
   animationTime: 0.3
   easingMode: 19

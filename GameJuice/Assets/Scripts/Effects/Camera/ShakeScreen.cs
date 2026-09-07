@@ -1,21 +1,22 @@
 using UnityEngine;
 using System.Collections.Generic;
+using Unity.Cinemachine;
 
 [CreateAssetMenu(fileName = "ShakeScreen_EffectSO", menuName = "EffectSO/Camera/ShakeScreen")]
 public class ShakeScreen : EffectSO
 {
-    [SerializeField] private Vector3 positionOffset;
+    [SerializeField] private float baseAmplitude = 1f;
     [SerializeField] private float blockMultiplier = 1.5f;
     [SerializeField] private float animationTime = 0.5f;
     [SerializeField] private LeanTweenType easingMode = LeanTweenType.easeInOutExpo;
 
-    public Vector3 PositionOffset => positionOffset;
+    public float BaseAmplitude => baseAmplitude;
     public float BlockMultiplier => blockMultiplier;
     public float AnimationTime => animationTime;
     public LeanTweenType EasingMode => easingMode;
 
-    public void OnPositionOffsetChanged(Vector3 pos)
-        => positionOffset = pos;
+    public void OnBaseAmplitudeChanged(float amp)
+        => baseAmplitude = amp;
 
     public void OnBlockMultiplierChanged(float mult)
         => blockMultiplier = mult;
@@ -26,29 +27,41 @@ public class ShakeScreen : EffectSO
     public void OnEasingModeChanged(LeanTweenType LTT)
         => easingMode = LTT;
 
-    private void StartAnimation(Vector3 pos)
+    private float currentAmplitude;
+
+    private void UpdateShakeFrequency(float value)
+        => CameraRefs.Cameras["BaseCamera"].GetComponent<CinemachineBasicMultiChannelPerlin>().FrequencyGain = value;
+
+    private void StartAnimation(float amplitude)
     {
-        LTSeq seq = LeanTween.sequence();
-        seq.append(Camera.main.transform.LeanMoveLocal(pos, animationTime / 4f).setEase(easingMode));
-        seq.append(Camera.main.transform.LeanMoveLocal(-pos, animationTime / 2f).setEase(easingMode));
-        seq.append(Camera.main.transform.LeanMoveLocal(Vector3.zero, animationTime / 4f).setEase(easingMode).setOnComplete(() => { Camera.main.transform.localPosition = Vector3.zero; }));
+        CinemachineBasicMultiChannelPerlin noise =  CameraRefs.Cameras["BaseCamera"].GetComponent<CinemachineBasicMultiChannelPerlin>();
+        noise.AmplitudeGain = amplitude;
+        LeanTween.value(CameraRefs.Cameras["BaseCamera"].gameObject,UpdateShakeFrequency,1f,0f,animationTime).setEase(easingMode)
+            .setOnComplete(_ =>
+            {
+                noise.AmplitudeGain = 0f;
+                noise.FrequencyGain = 0f;
+            });
     }
 
     private void CancelAnimation()
-        => LeanTween.cancelAll(Camera.main.transform);
+        => LeanTween.cancel(CameraRefs.Cameras["BaseCamera"].gameObject, true);
 
     private void OnBallHit(string otherTag, Vector2 point, Vector2 normal)
     {
-        Vector3 pos = positionOffset;
-
         if (otherTag == "Block")
-            pos *= blockMultiplier;
+            currentAmplitude *= blockMultiplier;
+        else
+            currentAmplitude = baseAmplitude;
 
-        StartAnimation(pos);
+        StartAnimation(currentAmplitude);
     }
 
     public override void OnEnabled()
-        => Ball.OnHit += OnBallHit;
+    { 
+        currentAmplitude = baseAmplitude;
+        Ball.OnHit += OnBallHit;
+    }
 
     public override void OnDisabled()
     {

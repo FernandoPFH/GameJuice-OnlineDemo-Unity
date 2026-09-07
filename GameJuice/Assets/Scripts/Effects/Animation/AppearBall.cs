@@ -104,6 +104,8 @@ public class AppearBall : EffectSO
             GameStateManager.Instance.ResetGame();
     }
 
+    private Vector3 baseScale;
+
     private void StartAnimation()
     {
         numOfAnimationsToFinish = 0;
@@ -113,9 +115,8 @@ public class AppearBall : EffectSO
 
         Transform obj = Ball.Instance.transform;
 
-        Vector3 finalScale = obj.localScale;
         obj.localScale = obj.localScale.Multiply(scaleMultiplier);
-        obj.LeanScale(finalScale, timeToAppear).setDelay(Delay).setEase(easingMode).setOnComplete(() => { numOfAnimationsToFinish--; obj.localScale = finalScale; });
+        obj.LeanScale(baseScale, timeToAppear).setDelay(Delay).setEase(easingMode).setOnComplete(() => { numOfAnimationsToFinish--; obj.localScale = baseScale; });
     }
 
     private void CancelAnimation()
@@ -151,6 +152,8 @@ public class AppearBall : EffectSO
 
     public override void OnEnabled()
     {
+        baseScale = Ball.Instance.transform.localScale;
+
         GameStateManager.Instance.RegisterWait(GameState.BallAnimation, HasAppearBallAnimationFinished);
         GameStateManager.OnGameStateChange += OnGameStateChange;
         GameStateManager.OnGameReset += OnGameReset;

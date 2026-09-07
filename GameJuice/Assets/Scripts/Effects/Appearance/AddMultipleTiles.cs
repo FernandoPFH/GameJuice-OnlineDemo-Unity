@@ -49,10 +49,10 @@ public class AddMultipleTiles_EffectSO : EffectSO
                 continue;
 
             SpriteChance selectedSprite = sortedSpriteChances.FirstOrDefault(x => x.chance >= Random.Range(0f, 1f));
-            if (block.TryGetComponent(out SpriteRenderer renderer))
+            if (BlockRefs.Instances.TryGetValue(block,out BlockRefs blockRefs))
             {
-                renderer.sprite = selectedSprite.sprite ? selectedSprite.sprite : AppearanceDefaults.Instance.BlockSprite;
-                renderer.size = Vector2.one;
+                blockRefs.Renderer.sprite = selectedSprite.sprite ? selectedSprite.sprite : AppearanceDefaults.Instance.BlockSprite;
+                blockRefs.Renderer.size = Vector2.one;
             }
         }
     }
@@ -60,10 +60,10 @@ public class AddMultipleTiles_EffectSO : EffectSO
     private void ResetRandomTiles()
     {
         foreach (Block block in Block.Instances)
-            if (block.TryGetComponent(out SpriteRenderer renderer))
+            if (BlockRefs.Instances.TryGetValue(block,out BlockRefs blockRefs))
             {
-                renderer.sprite = AppearanceDefaults.Instance.BlockSprite;
-                renderer.size = Vector2.one;
+                blockRefs.Renderer.sprite = AppearanceDefaults.Instance.BlockSprite;
+                blockRefs.Renderer.size = Vector2.one;
             }
     }
 
