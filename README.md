@@ -7,15 +7,16 @@ Criação de uma demo online para observar uma série de técnicas de polimento 
 
 [Clique Aqui](https://fernandopfh.github.io/GameJuice-OnlineDemo-Unity/)
 
+## Controles
+- R: Reseta a Bola
+- +: Adiciona 1 bloco
+- -: Remove 1 bloco
+
 # Próximos Passos:
 - UI Effects
-- Make not needed UI hidden
 - Update Tiles Textures
-- Fix Unstuck Algorithm
 - Fix Effect Issues:
     - Audio cutting early when hitting multiple objects
-    - Last Hit Zoom not following ball and not reseting
-    - Multiple tile assets not appearing
 
 ## Assets/Ferramentas usadas:
 - Background Music = [Epic Dubstep - Short Version 4 | BlackTrendMusic | Free Music Archive | CC BY-NC-ND](https://freemusicarchive.org/music/blacktrendmusic/epic-dubstep/epic-dubstep-short-version-4/)
