@@ -74,6 +74,13 @@ public class Block : MonoBehaviour
         AdvanceState();
     }
 
+    public void FakeHit()
+    {
+        gameObject.GetComponent<BoxCollider2D>().enabled = false;
+
+        AdvanceState();
+    }
+
     public static void RegisterWait(BlockState blockState, Func<bool> predicate)
     {
         if (!waitPerBlockState.TryGetValue(blockState, out List<Func<bool>> waits))

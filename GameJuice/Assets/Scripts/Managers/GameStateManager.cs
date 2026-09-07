@@ -3,6 +3,8 @@ using UnityEngine.SceneManagement;
 using System;
 using System.Linq;
 using System.Collections.Generic;
+using UnityEngine.InputSystem;
+using Unity.Collections;
 
 public class GameStateManager : Singleton<GameStateManager>
 {
@@ -21,6 +23,24 @@ public class GameStateManager : Singleton<GameStateManager>
 
     private void Update()
     {
+        float changeBlocks = InputSystem.actions.FindAction("ChangeBlocks").ReadValue<float>();
+        if (changeBlocks > 0f)
+            foreach (Block block in Block.Instances)
+            {
+                if (block.BlockState is BlockState.Disabled)
+                {
+                    block.Reset();
+                    break;
+                }
+            } 
+        else if (changeBlocks < 0f && Block.Count > 1)
+            foreach (Block block in Block.Instances)
+                if (block.BlockState is BlockState.Enabled)
+                {
+                    block.FakeHit();
+                    break;
+                } 
+
         switch (GameState)
         {
             case GameState.GameSpaceAnimation:
@@ -82,7 +102,6 @@ public class GameStateManager : Singleton<GameStateManager>
 
     public void ResetGame()
     {
-
         Ball.Instance?.Reset();
         Bar.Instance?.Reset();
         if (Block.Instances.Count > 0)

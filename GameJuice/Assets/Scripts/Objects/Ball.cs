@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Collider))]
 public class Ball : Singleton<Ball>
@@ -27,11 +28,19 @@ public class Ball : Singleton<Ball>
 
     public BallTrajectoryPredic BallTrajectoryPredic { get; private set; }
 
-    private void Start()
-        => BallTrajectoryPredic = new(layerMaskNextContacts, GetComponent<CircleCollider2D>().bounds.size.x);
+    protected override void Awake()
+    { 
+        base.Awake();
+        BallTrajectoryPredic = new(layerMaskNextContacts, GetComponent<CircleCollider2D>().bounds.size.x);
+    }
 
     private void Update()
-        => transform.position += (Vector3)velocity * Time.deltaTime;
+    { 
+        if (InputSystem.actions.FindAction("Reset").IsPressed())
+            OnDeathWallHit(FindAnyObjectByType<DeathWall>(), transform.position);
+
+        transform.position += (Vector3)velocity * Time.deltaTime;
+    }
 
     private void OnDrawGizmosSelected()
     {
