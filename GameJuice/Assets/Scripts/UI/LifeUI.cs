@@ -1,6 +1,8 @@
 using UnityEngine;
 using TMPro;
 
+using FernandoPFH_Essentials_Runtime;
+
 public class LifeUI : Singleton<LifeUI>
 {
     [SerializeField] private TextMeshProUGUI textMesh;

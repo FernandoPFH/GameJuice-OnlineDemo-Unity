@@ -154,9 +154,37 @@ PrefabInstance:
       value: Input
       objectReference: {fileID: 0}
     - target: {fileID: 8263608078717527980, guid: aabdf3e7bdb72217cadd53d5a09e72b4, type: 3}
+      propertyPath: isHDR
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8263608078717527980, guid: aabdf3e7bdb72217cadd53d5a09e72b4, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8263608078717527980, guid: aabdf3e7bdb72217cadd53d5a09e72b4, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8263608078717527980, guid: aabdf3e7bdb72217cadd53d5a09e72b4, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 8968426492285469834}
+    - target: {fileID: 8263608078717527980, guid: aabdf3e7bdb72217cadd53d5a09e72b4, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8263608078717527980, guid: aabdf3e7bdb72217cadd53d5a09e72b4, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnValueChanged
+      objectReference: {fileID: 0}
+    - target: {fileID: 8263608078717527980, guid: aabdf3e7bdb72217cadd53d5a09e72b4, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ColorHandler, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8263608078717527980, guid: aabdf3e7bdb72217cadd53d5a09e72b4, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1573723203367724331, guid: aabdf3e7bdb72217cadd53d5a09e72b4, type: 3}
     m_RemovedGameObjects: []

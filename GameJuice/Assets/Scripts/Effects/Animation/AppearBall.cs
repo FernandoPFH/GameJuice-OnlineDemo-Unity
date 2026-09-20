@@ -1,6 +1,6 @@
 using UnityEngine;
-using System.Linq;
-using System.Collections.Generic;
+
+using FernandoPFH_Essentials_Runtime;
 
 [CreateAssetMenu(fileName = "AppearBall_EffectSO", menuName = "EffectSO/Animation/AppearBall")]
 public class AppearBall : EffectSO
@@ -115,7 +115,7 @@ public class AppearBall : EffectSO
 
         Transform obj = Ball.Instance.transform;
 
-        obj.localScale = obj.localScale.Multiply(scaleMultiplier);
+        obj.localScale = obj.localScale.MultiplyElements(scaleMultiplier);
         obj.LeanScale(baseScale, timeToAppear).setDelay(Delay).setEase(easingMode).setOnComplete(() => { numOfAnimationsToFinish--; obj.localScale = baseScale; });
     }
 

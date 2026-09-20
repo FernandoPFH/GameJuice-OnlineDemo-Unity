@@ -1,6 +1,8 @@
 using UnityEngine;
 using System;
 
+using FernandoPFH_Essentials_Runtime;
+
 public class LifeManager : Singleton<LifeManager>
 {
     [SerializeField] private int initialLifes = 3;

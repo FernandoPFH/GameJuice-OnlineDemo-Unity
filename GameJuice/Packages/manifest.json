@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.fernandopfh.essentials": "https://github.com/FernandoPFH/Essentials-Package-Unity.git?path=EssentialsPackage/Assets/FernandoPFH_Essentials",
     "com.unity.2d.animation": "13.0.4",
     "com.unity.2d.aseprite": "3.0.1",
     "com.unity.2d.psdimporter": "12.0.1",

@@ -1,7 +1,6 @@
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEditor;
-using System.Reflection;
+
+using FernandoPFH_Essentials_Runtime;
 
 public class ColorHandler : PropertyHandler<Color>
 {
@@ -14,9 +13,9 @@ public class ColorHandler : PropertyHandler<Color>
         colorPickerField.SetColor(lastValue);
     }
 
-    public void OnValueChanged(ColorData input)
+    public void OnValueChanged(Color input)
     {
-        method.Invoke(effectHandler.Effect, new object[] { input.ColorWithoutHDR });
-        lastValue = input.ColorWithoutHDR;
+        method.Invoke(effectHandler.Effect, new object[] { input });
+        lastValue = input;
     }
 }

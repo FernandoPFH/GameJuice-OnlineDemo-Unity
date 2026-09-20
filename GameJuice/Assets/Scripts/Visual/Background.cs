@@ -1,5 +1,7 @@
 using UnityEngine;
 
+using FernandoPFH_Essentials_Runtime;
+
 [RequireComponent(typeof(SpriteRenderer))]
 public class Background : Singleton<Background>
 {

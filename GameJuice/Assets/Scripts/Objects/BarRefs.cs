@@ -1,5 +1,7 @@
 using UnityEngine;
 
+using FernandoPFH_Essentials_Runtime;
+
 public class BarRefs : Singleton<BarRefs>
 {
     public SpriteRenderer Renderer;

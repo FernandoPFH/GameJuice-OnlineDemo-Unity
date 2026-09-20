@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEditor;
 using NaughtyAttributes;
 
+using FernandoPFH_Essentials_Runtime;
+
 public class UIGenerator : Singleton<UIGenerator>
 {
     [SerializeField] private SerializableDictionary<string, List<EffectSO>> effectsPerType = new();

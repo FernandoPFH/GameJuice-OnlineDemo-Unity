@@ -1,10 +1,10 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using System;
 using System.Linq;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
-using Unity.Collections;
+
+using FernandoPFH_Essentials_Runtime;
 
 public class GameStateManager : Singleton<GameStateManager>
 {

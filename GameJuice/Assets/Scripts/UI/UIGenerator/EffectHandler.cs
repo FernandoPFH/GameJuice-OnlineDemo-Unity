@@ -6,6 +6,8 @@ using System.Reflection;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
+using FernandoPFH_Essentials_Runtime;
+
 #if UNITY_EDITOR
 using UnityEditor;
 using UnityEditor.Events;

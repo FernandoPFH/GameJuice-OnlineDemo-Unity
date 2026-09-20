@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+using FernandoPFH_Essentials_Runtime;
+
 [RequireComponent(typeof(Collider))]
 public class Ball : Singleton<Ball>
 {

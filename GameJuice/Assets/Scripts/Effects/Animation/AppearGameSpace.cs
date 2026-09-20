@@ -2,6 +2,8 @@ using UnityEngine;
 using System.Linq;
 using System.Collections.Generic;
 
+using FernandoPFH_Essentials_Runtime;
+
 [CreateAssetMenu(fileName = "AppearGameSpace_EffectSO", menuName = "EffectSO/Animation/AppearGameSpace")]
 public class AppearGameSpace : EffectSO
 {
@@ -206,7 +208,7 @@ public class AppearGameSpace : EffectSO
             {
                 numOfAnimationsToFinish++;
                 Vector3 finalScale = obj.localScale;
-                obj.localScale = obj.localScale.Multiply(scaleMultiplier);
+                obj.localScale = obj.localScale.MultiplyElements(scaleMultiplier);
                 obj.LeanScale(finalScale, timeToAppear).setDelay(Delay).setEase(easingMode).setOnComplete(() => { numOfAnimationsToFinish--; obj.localScale = finalScale; });
             }
         }

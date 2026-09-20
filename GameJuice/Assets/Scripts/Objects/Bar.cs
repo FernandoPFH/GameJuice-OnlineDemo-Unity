@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using System;
 
+using FernandoPFH_Essentials_Runtime;
+
 public class Bar : Singleton<Bar>
 {
     [SerializeField] private float moveIntensity = 1f;

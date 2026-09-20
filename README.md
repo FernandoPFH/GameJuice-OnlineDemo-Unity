@@ -15,6 +15,7 @@ Criação de uma demo online para observar uma série de técnicas de polimento 
 # Próximos Passos:
 - UI Effects
 - Update Tiles Textures
+- Adicionar Toggle para Post Processing
 - Fix Effect Issues:
     - Audio cutting early when hitting multiple objects
 
